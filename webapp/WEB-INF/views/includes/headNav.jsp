@@ -489,7 +489,7 @@ clear: both
 							class="input-group-btn">
 							<button class="btn searchbar-btn-custom" id="search_btn"
 								type="submit"
-								style="height: 45px; border-style: solid; border-color: green; border-width: thin; float: right; z-index: 2"
+								style="height: 45px; border-style: solid; margin-left:30px; border-color: green; border-width: thin; float: right; z-index: 2"
 								value="";>
 								<span class="glyphicon glyphicon-search"></span>
 							</button>

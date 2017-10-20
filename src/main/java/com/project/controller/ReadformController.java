@@ -1,0 +1,212 @@
+package com.project.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.project.service.ReadformService;
+import com.project.service.UserpageService;
+import com.project.vo.DatVo;
+import com.project.vo.ModifyVo;
+import com.project.vo.ReadformVo;
+import com.project.vo.ScrapVo;
+import com.project.vo.SocialUserVo;
+import com.project.vo.UserpageVo;
+
+@Controller
+@RequestMapping("/read")
+public class ReadformController {
+   
+   @Autowired
+   private ReadformService readformService;
+   
+   @Autowired
+   private UserpageService userpageService;
+   
+   //readform할시 실행
+   @RequestMapping(value="/readform")
+   public String getlist(@ModelAttribute ReadformVo readformVo,
+         @ModelAttribute ReadformVo readformVo2,
+         @ModelAttribute ReadformVo readformVo3,Model model,Model model2,
+         HttpSession session) {
+      
+   
+      //요리 순서글
+      List<ReadformVo> list = readformService.getlist(readformVo);
+               
+      //레시피 제목,소개글,조리난이도,조리시간 왼쪽에 표시할 셰프 정보
+      readformVo2=readformService.getread(readformVo2);
+      //레시피 주인의 팔로우 정보 가져오기
+      UserpageVo chef = readformService.getUser(readformVo2.getChef_no());
+      
+      //재료이름,재료양
+      List<ReadformVo> list3=readformService.getmaterial(readformVo3);
+      
+      //비교를 위한 authUser정보
+      SocialUserVo authUser=(SocialUserVo) session.getAttribute("authUser");
+      
+      //레시피 작성자의 follow정보 가져오기
+      List<UserpageVo> followedList = userpageService.getFollowedList(readformVo2.getChef_no());
+      model.addAttribute("followedList", followedList);
+      
+      //팔로우 검사를 위한 변수 생성
+      int followcheck = 3;
+      
+      if(authUser!=null) {
+      
+         int user_chef_no=authUser.getChef_no();
+         
+         model.addAttribute("user_chef_no", user_chef_no);
+         
+         //레시피 사용자의 followlist안에 authUser가 있는 지 체크 후 변수 변경해줌
+         for(int i = 0; i < followedList.size(); i++) {
+            UserpageVo testNo = followedList.get(i);
+            if(user_chef_no == testNo.getChef_no()) {
+               followcheck = 1;
+               break;
+            }         
+         }
+      
+      }
+      
+   
+      
+      model.addAttribute("followcheck", followcheck);
+      
+      //카테고리 리스트
+      List<UserpageVo> recipebookList = readformService.getRecipebookList(readformVo2.getChef_no());
+      
+      /*List<UserpageVo> followedList = userpageService.getFollowedList(chef_no);*/
+      /*model.addAttribute("followedList", followedList);*/
+      
+      model.addAttribute("recipebookList", recipebookList);
+      model.addAttribute("list",list);   
+      model.addAttribute("chef", chef);
+      model2.addAttribute("readformVo2",readformVo2);
+      model2.addAttribute("list3",list3);
+            
+      return "/user/readform";
+   }
+   
+   @RequestMapping(value="/delete")
+   public String delete(@ModelAttribute ReadformVo readformVo) {
+      
+      System.out.println("int 전에");
+      System.out.println("삭제 도착: "+readformVo.toString());
+      int no=readformVo.getRecipe_no();
+      
+      readformService.deleteTag(no);
+      readformService.deleteRecipe(no);
+      
+      
+      
+      
+      return "main/index";
+   }
+   
+   @RequestMapping(value="/modify")
+   public String modify(@ModelAttribute ReadformVo readformVo,
+         ModifyVo modifyVo,Model model) {
+      
+      int no=readformVo.getRecipe_no();
+      modifyVo=readformService.modifyData(no);
+      
+      model.addAttribute("modifyVo",modifyVo);
+      
+      return "user/modifyform";
+   }
+   
+   
+   //js로 가는 구문들
+    @ResponseBody
+   @RequestMapping(value="/list",method=RequestMethod.POST)
+   public List<DatVo> list(DatVo datVo, @RequestParam("recipe_no") int recipe_no,HttpSession session) {
+      
+       SocialUserVo authUser=(SocialUserVo) session.getAttribute("authUser");
+       //로그인 되어 있을때
+       if(authUser!=null) 
+       {
+       int chef_no=authUser.getChef_no();
+              
+       datVo.setRecipe_no(recipe_no);
+       System.out.println("aa");
+      List<DatVo> list=readformService.getdatlist(datVo);
+      
+      for(int i=0;i<list.size();i++) {
+         if(chef_no!=(list.get(i).getChef_no())) {
+            list.get(i).setChef_no(0);
+                                       }
+         else {list.get(i).setChef_no(1);}
+                              }
+      System.out.println(list.toString());
+      return list;
+      //비로그인 일때
+       }else {
+          datVo.setRecipe_no(recipe_no);
+           
+          List<DatVo> list=readformService.getdatlist(datVo);
+          
+          return list;
+          
+       }
+       
+       
+   }
+
+   
+   
+   
+   @ResponseBody//list로 보낼때 주소로 보내야 되는 데 주소가 없으므로 body로 보낸다
+   @RequestMapping(value="/add",method=RequestMethod.POST)
+   public DatVo add(@ModelAttribute DatVo datVo) {
+      
+      
+      readformService.insertVo(datVo);
+      
+      
+      return datVo;
+   }
+   //js로 가는 구문들
+   
+   //readform시 실행
+   
+   
+   //delete시 시행
+   
+   
+   @ResponseBody
+   @RequestMapping(value = "/delete",method=RequestMethod.POST)
+   public DatVo delte(DatVo datVo,@RequestParam("comment_no") int comment_no,Model model) {
+      
+      datVo.setComment_no(comment_no);
+      System.out.println(datVo.toString());
+      
+      readformService.delete(datVo);
+      
+      
+      return datVo;
+   }
+   
+   @ResponseBody
+   @RequestMapping(value = "/scrap", method = RequestMethod.POST)
+   public int scrap(@RequestBody ScrapVo vo) {
+      
+      System.out.println(vo.toString());
+      
+      return readformService.addScrap(vo);
+      
+   }
+
+
+
+}

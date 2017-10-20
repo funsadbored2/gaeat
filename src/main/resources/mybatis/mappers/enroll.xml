@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="enroll">
+	
+	<resultMap id = "recipeBookListResult" type = "com.project.vo.RecipeBookListVo">
+		<result column = "recipebook_no" property = "recipebookNo"/>
+		<result column =  "recipebook_name" property = "recipebookName"/>
+	</resultMap>
+	
+	<select id = "getRecipebookList" parameterType = "int" resultMap = "recipeBookListResult">
+      <![CDATA[
+      
+      SELECT distinct rb.recipebook_no, rb.recipebook_name
+         FROM chef c,recipebook rb
+         where c.chef_no=rb.chef_no
+         and c.chef_no = #{chef_no}
+      ]]>
+   </select>
+	
+	<insert id = "EnrollRecipeInfo" parameterType = "com.project.vo.RecipeInfo">
+		
+		<selectKey keyProperty="recipe_no" resultType="int" order ="BEFORE">
+        	select recipe_no_seq.nextval from dual
+    	</selectKey>
+
+		<![CDATA[
+			insert into recipe
+			values(
+			#{recipe_no},
+			#{introduction},
+			'이미지 없음',
+			#{userNo},
+			#{recipeTitle},
+			#{foodName},
+			sysdate,
+			#{cookingLevel},
+			#{cookingTime},
+			#{cookingType},
+			#{cookingMethod},
+			#{amount},
+			#{recipebook_no}
+			)
+		]]>
+		
+	</insert>
+	
+	<insert id="EnrollContent" parameterType="com.project.vo.RecipeContent">
+
+			<![CDATA[
+				insert into content
+				values(
+				content_no_seq.nextval,
+				#{recipeNo},
+				#{orderNo},
+				#{textContent},
+				#{path}
+				)
+			]]>
+			
+	</insert>
+
+	<insert id="Enrollnewmaterial" parameterType="com.project.vo.RecipeIngredients">
+	<![CDATA[
+		MERGE into material
+		using dual on (material_name = #{materialName})
+		when not matched then
+		insert(material_no, material_name) values(SEQUENCE_m.nextval,
+		#{materialName})
+		]]>
+	</insert>
+	
+	<select id = "getMaterialNo" parameterType = "com.project.vo.RecipeIngredients" resultType = "int">
+		
+		<![CDATA[
+			select material_no
+			from material
+			where material_name = #{materialName}
+		]]>
+	
+	</select>
+	
+	<insert id = "EnrollIngre" parameterType = "com.project.vo.RecipeIngredients">
+		<![CDATA[
+			insert into material_history
+			values(
+			mh_no_seq.nextval,
+			#{recipeNo},
+			#{materialNo},
+			#{amount}
+			)
+		]]>
+	
+	</insert>
+	
+	<select id = "SelectRecipeBookNo" parameterType = "com.project.vo.RecipeInfo" resultType = "int">
+		
+	<![CDATA[
+	 select recipebook_no
+	 from recipebook
+	 where recipebook_name = #{recipebookName}
+	 and chef_no=#{userNo}
+	]]>
+	
+	</select>
+	
+	<select id = "selectDate" parameterType = "int" resultType = "String">
+		<![CDATA[
+			select reg_date from recipe
+			where recipe_no	= #{recipeNo}	
+		]]>
+	</select>
+	
+	<insert id = "tagInsert" parameterType = "String">	
+		<![CDATA[	
+			MERGE into tag
+			using dual on (tag_name = #{tag})
+			when not matched then			
+			insert (tag_no,tag_name) values(sequence_t.nextval,#{tag})			
+			
+		]]>
+		
+	</insert>
+	
+	<select id = "selectTagNo" parameterType = "String" resultType = "int">
+	
+	    <![CDATA[
+	    	select tag_no from tag
+	    	where tag_name = #{tag} 
+	    ]]>
+	
+	</select>
+	
+	<insert id = "tagHisInsert" parameterType = "com.project.vo.RecipeTag">
+		<![CDATA[
+		
+			insert into tag_history
+			values(
+			th_sequence.nextval,
+			#{recipeNo},
+			#{tagNo},
+			sysdate
+			)
+		]]>
+
+	</insert>
+	
+	<update id="updateMainPhoto" parameterType="com.project.vo.RecipeMainPhoto">
+	<![CDATA[	
+		MERGE into recipe
+		using dual on (recipe_no = #{recipeNo})
+		when matched then
+		update set food_img = #{saveMainphotoName}
+	]]>
+	</update>
+	
+	<select id = "ingredients" resultType = "String">
+	<![CDATA[
+		
+		select material_name from material
+		
+	]]>
+	</select>
+
+</mapper>

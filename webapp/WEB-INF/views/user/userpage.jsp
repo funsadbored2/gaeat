@@ -27,14 +27,15 @@
 		<div class="row">
 
 			<div style="padding-top: 30px;"></div>
-			<div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+				<div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="media">
-							<div align="center">
-								<img class="thumbnail img-responsive " src="${chef.profile }" style = "width:300px; height:300px;">
+						<div  style = "margin-bottom:30px;">
+							<div align="center" >
+								<img class="thumbnail img-responsive " src="${chef.profile }" alt = "post img" style = "height:200px;">
 							</div>
-
+						</div>
 							
 							<!--  왼쪽부분 -->
 							<div class="media-body">

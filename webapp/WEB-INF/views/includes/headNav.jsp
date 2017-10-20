@@ -41,20 +41,7 @@
 <!-- 로그인폼 스타일  -->
 
 <style type="text/css">
-/* #####################################################################
-   #
-   #   Project       : Modal Login with jQuery Effects
-   #   Author        : Rodrigo Amarante (rodrigockamarante)
-   #   Version       : 1.0
-   #   Created       : 07/28/2015
-   #   Last Change   : 08/02/2015
-   #
-   ##################################################################### */
-@import url(http://fonts.googleapis.com/css?family=Roboto);
 
-* {
-	font-family: 'Roboto', sans-serif;
-}
 
 #login-modal .modal-dialog {
 	width: 350px;

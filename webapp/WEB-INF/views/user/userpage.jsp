@@ -32,7 +32,7 @@
 					<div class="panel-body">
 						<div class="media">
 							<div align="center">
-								<img class="thumbnail img-responsive " src="${chef.profile }" width="300px" height="300px">
+								<img class="thumbnail img-responsive " src="${chef.profile }" style = "width:300px; height:300px;">
 							</div>
 
 							
@@ -347,7 +347,7 @@
 												<div class="col-md-4">
 													<div class="single-blog-item">
 														<div class="blog-thumnail" style = "vertical-align:middle">
-																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }"><img src="${list.food_img }" class ="foodimage" alt="post img" height = "178.5px";width = "239.83px;"></a>
+																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }"><img src="${list.food_img }" class ="foodimage" alt="post img" style="height:178.5px; width:239.83px"></a>
 														</div>
 														<hr/>
 														<div class="blog-content">
@@ -358,7 +358,7 @@
 															</h4>
 															<p style = "height:20px; overflow:hidden">${list.introduction }</p>
 														</div>
-														<span class="blog-date">좋아요 ${list.like_count }</span>
+														<span class="blog-date" style = "font-size:12px">좋아요 ${list.like_count }</span>
 													</div>
 												</div>
 											</c:if>	

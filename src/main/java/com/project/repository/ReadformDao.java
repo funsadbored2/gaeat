@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.DatVo;
+import com.project.vo.LikeVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
@@ -119,7 +120,18 @@ public class ReadformDao {
       return sqlSession.selectList("readform.selectByno",datVo);
       
    }
-   
+   public ReadformVo scrapcheck(ReadformVo checvo) {
+	      return sqlSession.selectOne("readform.scrapcheck",checvo);
+	      
+	   }
+   //likecheck
+   public String likecheck(LikeVo likcecheck) {
+	   System.out.println("likecheck3");
+	  String a= sqlSession.selectOne("readform.likecheck",likcecheck);
+	   System.out.println("likecheck4"+a);
+	      return a;
+	      
+	   }
    
    //delete
    public int delete(DatVo datVo) {
@@ -135,4 +147,19 @@ public class ReadformDao {
 
    
 
+   
+   public int removeScrap(ScrapVo vo) {
+	   return  sqlSession.delete("readform.removeScrap", vo);
+	    
+	   }
+   
+   
+   public int addlike(LikeVo vo) {
+	   return  sqlSession.insert("readform.addlike", vo);
+	    
+	   }
+   public int dellike(LikeVo vo) {
+	   return  sqlSession.delete("readform.dellike", vo);
+	    
+	   }
 }

@@ -67,7 +67,7 @@
 	
 	<select id="getScrapList" resultType="com.project.vo.UserpageVo">
 		<![CDATA[
-			SELECT  c.chef_no, c.nickname, c.self_intro, r.recipe_title, r.introduction, s.reg_date, r.food_img,
+			SELECT  c.chef_no, c.nickname, c.self_intro, r.recipe_title, r.introduction, s.reg_date, r.food_img,r.recipe_no,
 			    (select count(*) from LIKE_HISTORY where s.recipe_no=LIKE_HISTORY.recipe_no) as like_count
 			FROM scrap_recipe s
 			JOIN recipe r

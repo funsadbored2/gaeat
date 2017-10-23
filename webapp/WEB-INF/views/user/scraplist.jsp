@@ -268,15 +268,15 @@
 						<!-- 갤러리 -->
 								<div class="container-fluid">
 									<div class="row">
-										<c:forEach items="${scrapList }" var="list">
+										<c:forEach items="${scrapList}" var="list">
 												<div class="col-md-4">
 													<div class="single-blog-item">
 														<div class="blog-thumnail">
-															 <a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }"><img src="${list.food_img}" class ="foodimage" alt="blog-img"></a>
+															 <a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no}"><img src="${list.food_img}" class ="foodimage" alt="blog-img"></a>
 														</div>
 														<div class="blog-content">
 															<h4>
-																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }">${list.recipe_title }</a>
+																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no}">${list.recipe_title }</a>
 																<h style="font-size:5px; color:green;">by </h>
 																<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${list.chef_no}" style="font-size:12px; color:black;">${list.nickname }</a>
 															</h4>

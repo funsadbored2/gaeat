@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.service.ReadformService;
 import com.project.service.UserpageService;
 import com.project.vo.DatVo;
+import com.project.vo.LikeVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
 import com.project.vo.SocialUserVo;
 import com.project.vo.UserpageVo;
+
 
 @Controller
 @RequestMapping("/read")
@@ -43,7 +45,7 @@ public class ReadformController {
    
       //요리 순서글
       List<ReadformVo> list = readformService.getlist(readformVo);
-               
+     System.out.println(readformVo2.toString()+"###############################"); 
       //레시피 제목,소개글,조리난이도,조리시간 왼쪽에 표시할 셰프 정보
       readformVo2=readformService.getread(readformVo2);
       //레시피 주인의 팔로우 정보 가져오기
@@ -61,13 +63,9 @@ public class ReadformController {
       
       //팔로우 검사를 위한 변수 생성
       int followcheck = 3;
-      
       if(authUser!=null) {
-      
          int user_chef_no=authUser.getChef_no();
-         
          model.addAttribute("user_chef_no", user_chef_no);
-         
          //레시피 사용자의 followlist안에 authUser가 있는 지 체크 후 변수 변경해줌
          for(int i = 0; i < followedList.size(); i++) {
             UserpageVo testNo = followedList.get(i);
@@ -79,10 +77,7 @@ public class ReadformController {
       
       }
       
-   
-      
       model.addAttribute("followcheck", followcheck);
-      
       //카테고리 리스트
       List<UserpageVo> recipebookList = readformService.getRecipebookList(readformVo2.getChef_no());
       
@@ -94,7 +89,24 @@ public class ReadformController {
       model.addAttribute("chef", chef);
       model2.addAttribute("readformVo2",readformVo2);
       model2.addAttribute("list3",list3);
-            
+      
+      
+ /*     Scrapcheck check =new Scrapcheck();
+      check.setChef_no(authUser.getChef_no());
+      check.setRecipe_no(readformVo2.getRecipe_no());
+      */
+      /*스크랩 체크 */
+      readformVo2.setChef_no(authUser.getChef_no());
+      String  check1= readformService.scrapcheck(readformVo2);
+      model.addAttribute("check", check1);
+      
+     /* 좋아요 체크 */
+      LikeVo likecheck = new LikeVo();
+     likecheck.setRecipe_no(readformVo2.getRecipe_no());
+     likecheck.setChef_no(authUser.getChef_no());
+     System.out.println("likecheck1");
+    String likecheck1= readformService.likecheck(likecheck);
+    model.addAttribute("likecheck", likecheck1);
       return "/user/readform";
    }
    
@@ -207,6 +219,30 @@ public class ReadformController {
       
    }
 
+   @ResponseBody
+   @RequestMapping(value = "/scrapremove", method = RequestMethod.POST)
+   public int scrapremove(@RequestBody ScrapVo vo) {
+	   System.out.println("@@@@scrapremove  "+vo.getUserNo());
+      System.out.println("@@@@scrapremove  "+vo.getRecipe_no());
+      return readformService.removeScrap(vo);
+      
+   }
+   @ResponseBody
+   @RequestMapping(value = "/addlike", method = RequestMethod.POST)
+   public int addlike(@RequestBody LikeVo vo) {
+	   System.out.println("@@@@likehistory  "+vo.getChef_no());
+      System.out.println("@@@@likehistory  "+vo.getRecipe_no());
+      return readformService.addlike(vo);
+      
+   }  
+   @ResponseBody
+   @RequestMapping(value = "/dellike", method = RequestMethod.POST)
+   public int dellike(@RequestBody LikeVo vo) {
+	   System.out.println("@@@@dellike  "+vo.getChef_no());
+      System.out.println("@@@@dellike  "+vo.getRecipe_no());
+      return readformService.dellike(vo);
+      
+   }
 
 
 }

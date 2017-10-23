@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.repository.ReadformDao;
 import com.project.vo.DatVo;
+import com.project.vo.LikeVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
@@ -87,8 +88,40 @@ public class ReadformService {
       return datVo;
    }
    
+   //scrapcheck
+   public String scrapcheck(ReadformVo checvo) {
+      
+	   ReadformVo checkvo1 =  readformDao.scrapcheck(checvo);
+	  
+      if( checkvo1 == null ) {
+    	  String a = "canuse";
+    	  System.out.println(a);
+    	 return a;
+      }else {
+    	  String a = "aladyused";
+    	  System.out.println(a);
+    	  return a;
+      }
+      
+   }	  
+   //likecheck 	 
+     
    
-   
+   public String likecheck(LikeVo likecheck) {
+	   System.out.println("likecheck2");
+	   String likecheck1 =  readformDao.likecheck(likecheck);
+	  
+      if( likecheck1 == null ) {
+    	  String a = "notlike";
+    	  System.out.println(a);
+    	 return a;
+      }else {
+    	  String a = "like";
+    	  System.out.println(a);
+    	  return a;
+      }
+      
+   }
    //delete 
    public int delete(DatVo datVo) {
       return readformDao.delete(datVo);
@@ -98,4 +131,21 @@ public class ReadformService {
    
    return readformDao.addScrap(vo);
    }
+   
+   
+   public int removeScrap(ScrapVo vo) {
+	   
+	   return readformDao.removeScrap(vo);
+	   }
+   
+   //like
+   public int addlike(LikeVo vo) {
+	   
+	   return readformDao.addlike(vo);
+	   }
+   
+  public int dellike(LikeVo vo) {
+	   
+	   return readformDao.dellike(vo);
+	   }
 }

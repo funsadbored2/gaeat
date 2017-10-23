@@ -162,9 +162,12 @@ public class UserpageController {
 		//카테고리 리스트
 		List<UserpageVo> recipebookList = userpageService.getRecipebookList(chef_no);
 		model.addAttribute("recipebookList", recipebookList);
+	
+		
 		
 		//스크랩 리스트
 		List<UserpageVo> scrapList = userpageService.getScrapList(chef_no);
+		System.out.print("#####################스크랩 리스트 :"+scrapList.toString());
 		model.addAttribute("scrapList", scrapList);
 				
 		return "user/scraplist";

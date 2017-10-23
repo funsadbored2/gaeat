@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
 							<!--  왼쪽부분 -->
 							<input id= "authUserFinder" type = "hidden" name = "${user_chef_no }">
 							<div class="media-body">
-								<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${readformVo2.chef_no }" style="font-size:18px; color:black;"><strong>${readformVo2.nickname }</strong></a>
+								<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${chef.chef_no }" style="font-size:18px; color:black;"><strong>${readformVo2.nickname }</strong></a>
 								<br>
 								<br>
 								
@@ -262,21 +262,45 @@ pageEncoding="UTF-8"%>
 				<div class="panel-body">
 					<h4>
 						<a href="#" style="color:black; font-size:20px;"><strong>${readformVo2.recipe_title}</strong></a>
-											<c:choose>
+						<a id ="scrap">
+						<c:choose>
 						<c:when test = "${authUser.chef_no != chef.chef_no}">
-							<a class="btn btn-xs btn-default scrapButton" name = "${readformVo2.recipe_no }" style = "float:right; margin-right:100px;"><span class="glyphicon glyphicon-book"></span>  스크랩하기</a>
+							<c:if test="${check=='canuse'}">
+								<a class="btn btn-xs btn-default scrapButton" name = "${readformVo2.recipe_no }" style = "float:right; margin-right:100px;"><span class="glyphicon glyphicon-book"></span>  스크랩하기</a>
+							</c:if>
+							<c:if test="${check=='aladyused'}">
+								<a class='btn btn-xs btn-default scrapRemoveButton' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-bookmark'></span> 스크랩한 레시피</a>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<a></a>
 						</c:otherwise>
 					</c:choose>
+					</a>
 					<input id = "authuserNoFinder" type = "hidden" value = "${authUser.chef_no}">
+				
+					<a id= "likearea2">
+						<c:choose>
+						<c:when test = "${authUser.chef_no != chef.chef_no}">
+							<c:if test="${likecheck=='notlike'}">
+							<button class="btn btn-xs btn-default likeButton" name = "${readformVo2.recipe_no }" style = "float:right; margin-right:15px;color:grean;"><span class="glyphicon glyphicon-book"></span> 좋아요</button>
+							</c:if>
+							<c:if test="${likecheck=='like'}">
+							<button class="btn btn-xs btn-default unlikeButton" name = "${readformVo2.recipe_no }" style = "float:right; margin-right:15px;"><span class="glyphicon glyphicon-book"></span> 좋아요 해제 </button>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<a></a>
+						</c:otherwise>
+					</c:choose>
+					</a>
 					<script>
 					$(".scrapButton").on("click",function(){
 						
 						var username = $("#authuserNoFinder").val();
 						var recipe_no = $(this).attr("name");
-						var str = "<a class='btn btn-xs btn-default scrapRemoveButton' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-bookmark'></span> 스크랩한 레시피</a>";
+						
+						var str = "<a class='btn btn-xs btn-default scrapRemoveButton'  style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-bookmark'></span>  스크랩한레시피</a>";
 						
 						$(this).replaceWith(str);
 						
@@ -300,18 +324,98 @@ pageEncoding="UTF-8"%>
 								console.error(status + " : " + error);
 							}
 						});
+					})
+					
+						$(".scrapRemoveButton").on("click",function(){
+						var userNo = ${authUser.chef_no};
+						var recipe_no = '${readformVo2.recipe_no }';
+						$("#scrap").empty();
+						var str = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>";
+						
+						$(this).replaceWith(str);
+						
+						var ScrapVo = {
+								recipe_no:recipe_no,
+								userNo:userNo
+						}
+						console.log(ScrapVo);
+						
+						$.ajax({
+							url: "${pageContext.request.contextPath}/read/scrapremove",
+							type : "post",
+							contentType : "application/json",
+							data: JSON.stringify(ScrapVo),
+							
+							success : function() {
+								console.log("성공");							
+							}, 
+							error : function(XHR, status, error) {
+								console.error(status + " : " + error);
+							}
+						});
 						
 						
 					})
+					
+				
+					$(".likeButton").on("click",function(){
+						
+						var chef_no = ${authUser.chef_no};
+						var recipe_no = '${readformVo2.recipe_no }';
+						$("#likearea2").empty();
+						var str1 = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no}likebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>";
+						
+						$("#likearea2").append(str1);
+						var LikeVo = {
+								chef_no:chef_no,
+								recipe_no:recipe_no
+						}
+						console.log(LikeVo);
+						
+						$.ajax({
+							url: "${pageContext.request.contextPath}/read/addlike",
+							type : "post",
+							contentType : "application/json",
+							data: JSON.stringify(LikeVo),
+							success : function() {
+								console.log("성공");							
+							}, 
+							error : function(XHR, status, error) {
+								console.error(status + " : " + error);
+							}
+						});
+					})
+					
+					
+					$(".unlikeButton").on("click",function(){
+						var chef_no = ${authUser.chef_no};
+						var recipe_no = '${readformVo2.recipe_no }';
+						$("#likearea").empty();
+						var str2 = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }likebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 </button>";
+						
+						$("#likearea").append(str2);
+						
+						var LikeVo = {
+								recipe_no:recipe_no,
+								chef_no:chef_no
+						}
+						console.log(LikeVo);
+						
+						$.ajax({
+							url: "${pageContext.request.contextPath}/read/dellike",
+							type : "post",
+							contentType : "application/json",
+							data: JSON.stringify(LikeVo),
+							success : function() {
+								console.log("성공");							
+							}, 
+							error : function(XHR, status, error) {
+								console.error(status + " : " + error);
+							}
+						});
+					})
+					
 					</script>
-					<c:choose>
-						<c:when test = "${authUser.chef_no != chef.chef_no}">
-							<button class="btn btn-xs btn-default scrapButton" name = "${readformVo2.recipe_no }" style = "float:right; margin-right:15px;"><span class="glyphicon glyphicon-book"></span>  좋아요</button>
-						</c:when>
-						<c:otherwise>
-							<a></a>
-						</c:otherwise>
-					</c:choose>
 					<!-- <h6 class="line-title">댓글</h6> -->
 					<br>
 					<br>

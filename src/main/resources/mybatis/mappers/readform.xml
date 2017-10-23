@@ -24,6 +24,15 @@
 
    </select>
    
+     <select id="scrapcheck" parameterType="com.project.vo.ReadformVo" resultType="com.project.vo.ReadformVo">
+       <![CDATA[
+       select crecipe_no from scrap_recipe where CHEF_NO=${chef_no} and RECIPE_NO=${recipe_no}
+    ]]>
+
+   </select>
+   
+   
+   
      <select id="getByteNo" parameterType="com.project.vo.DatVo" resultType="com.project.vo.DatVo">
     <![CDATA[
     select uc.user_comment,uc.comment_no,c.nickname,c.chef_no,c.profile
@@ -137,6 +146,38 @@
         )
      ]]>
      </insert>
+     
+     
+ 	<delete id="removeScrap" parameterType = "com.project.vo.ScrapVo" >
+ 	 <![CDATA[
+ 	
+ 	delete from scrap_recipe where chef_no =#{userNo} and recipe_no =#{recipe_no}
+ 	
+ 	 ]]>
+ 	</delete>
+	<!--  좋아요  -->
+	 <select id="likecheck" parameterType="com.project.vo.LikeVo" resultType="String"><!-- resultType이 int인 경우 controller에서 받아줘야한다. -->
+     
+     <![CDATA[
+    select like_no from like_history where recipe_no= #{recipe_no} and chef_no= #{chef_no}
+    ]]>
+     
+     </select>
+	
+	
+     <insert id = "addlike" parameterType = "com.project.vo.LikeVo">
+     <![CDATA[
+        insert into like_history values( like_no_seq.nextval,#{recipe_no} ,#{chef_no},sysdate)
+     ]]>
+     </insert>
+     
+     <delete id="dellike" parameterType = "com.project.vo.LikeVo" >
+ 	 <![CDATA[
+ 	
+ 	delete from like_history where chef_no =#{chef_no} and recipe_no =#{recipe_no}
+ 	
+ 	 ]]>
+ 	</delete>
      
      <!-- 레시피 지우기 -->
      <delete id="deleteContent" parameterType="int">

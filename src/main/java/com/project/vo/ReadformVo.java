@@ -2,6 +2,8 @@ package com.project.vo;
 
 public class ReadformVo {
 	
+	
+	private String crecipe_no;
 	private int recipe_no;
 	private int chef_no;
 	private String introduction;
@@ -21,6 +23,14 @@ public class ReadformVo {
 	private String self_intro;
 	
 	
+	
+	
+	public String getCrecipe_no() {
+		return crecipe_no;
+	}
+	public void setCrecipe_no(String crecipe_no) {
+		this.crecipe_no = crecipe_no;
+	}
 	public String getSelf_intro() {
 		return self_intro;
 	}
@@ -148,12 +158,16 @@ public class ReadformVo {
 	}
 	@Override
 	public String toString() {
-		return "ReadformVo [recipe_no=" + recipe_no + ", introduction=" + introduction + ", recipe_title="
-				+ recipe_title + ", cooking_level=" + cooking_level + ", cooking_time=" + cooking_time + ", content="
-				+ content + ", reg_date=" + reg_date + ", oreder_no=" + oreder_no + ", food_img=" + food_img
-				+ ", text_content=" + text_content + ", img_content=" + img_content + ", material_name=" + material_name
-				+ ", amount=" + amount + "]";
+		return "ReadformVo [crecipe_no=" + crecipe_no + ", recipe_no=" + recipe_no + ", chef_no=" + chef_no
+				+ ", introduction=" + introduction + ", recipe_title=" + recipe_title + ", cooking_level="
+				+ cooking_level + ", cooking_time=" + cooking_time + ", content=" + content + ", reg_date=" + reg_date
+				+ ", oreder_no=" + oreder_no + ", food_img=" + food_img + ", text_content=" + text_content
+				+ ", img_content=" + img_content + ", material_name=" + material_name + ", amount=" + amount
+				+ ", profile=" + profile + ", nickname=" + nickname + ", self_intro=" + self_intro + "]";
 	}
+	
+	
+	
 	
 	
 	

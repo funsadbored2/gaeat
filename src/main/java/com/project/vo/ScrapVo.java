@@ -4,6 +4,8 @@ public class ScrapVo {
 	
 	private int recipe_no;
 	private int userNo;
+	
+	
 	public int getRecipe_no() {
 		return recipe_no;
 	}

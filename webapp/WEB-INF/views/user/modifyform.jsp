@@ -53,8 +53,7 @@
 	         <div class="form-group">
 	            <label for="title" class="col-sm-2 control-label" style="font-size:15px;">요리 소개</label>
 	            <div class="col-sm-10">
-	               <textarea type="text" class="form-control" id="introduction" style = "resize: none; background-color: white;" 
-						placeholder="요리를 간단하게 설명해주세요 EX) 가볍게 구운 검은깨 두부에 매운 파무침을 얹어 만든 고소하고 매콤한 두부 요리 ">${modifyVo.introduction}</textarea>
+	               <textarea type="text" class="form-control" id="introduction" style = "resize: none; background-color: white;" placeholder="요리를 간단하게 설명해주세요 EX) 가볍게 구운 검은깨 두부에 매운 파무침을 얹어 만든 고소하고 매콤한 두부 요리 ">${modifyVo.introduction}</textarea>
 	            </div>
 	         </div>
          

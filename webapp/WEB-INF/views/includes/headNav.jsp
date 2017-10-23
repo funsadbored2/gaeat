@@ -450,7 +450,7 @@ clear: both
 								
 									</div>
 									<div class="sidhatefood clear" >
-										<img src="${pageContext.request.contextPath}/assets/img/mainimg/dislike.png" onclick="ab()" />
+										<img src="${pageContext.request.contextPath}/assets/img/mainimg/dislike.png" onclick="ab()" style = "cursor:pointer"/>
 										<div id="hatefoodlist">
 									
 										</div>

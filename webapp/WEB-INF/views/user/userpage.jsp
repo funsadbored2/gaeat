@@ -320,17 +320,14 @@
 									<a></a>
 								</c:when>
 								<c:when test = "${authUser.chef_no != blist.chef_no}">
-									<c:forEach items="${authUserSubInfoList}" var="authBlist">
 										<c:choose>
-											<c:when test = "${authBlist.recipebook_no ==  blist.recipebook_no}">
-												<input type = "hidden" class = "subis" value = "{blist.recipebook_no}" name = "1">
+											<c:when test = "${blist.subCheck eq  1}">
+												<a class="btn btn-xs btn-default subscribRemove" name = "${blist.recipebook_no}">구독중</a>
 											</c:when>
-											<c:otherwise>
-												<input type = "hidden" class = "subis" value = "{blist.recipebook_no}" name = "2">
-											</c:otherwise>
+											<c:when test = "${blist.subCheck eq  3}">
+												<a class="btn btn-xs btn-default subscription" name = "${blist.recipebook_no}">구독하기</a>
+											</c:when>
 										</c:choose>
-									</c:forEach>
-									<div id = "subSopt"></div>
 								</c:when>
 							</c:choose>
 							

@@ -99,11 +99,45 @@ public class SearchService {
       kvo.setF_list_check(flcheck(kvo));
       return searchdao.getListTag(kvo);
    }
+	
+	//////////////////////////////////////////////////////////////////////////
+	// 모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//
+	//////////////////////////////////////////////////////////////////////////
+	public List<RecipeVo> mobileSearch(String search_word) {
+		String rlistM = searchdao.mobileSearchM(search_word); //재료
+		String rlistN = searchdao.mobileSearchN(search_word); //요리명
+		
+		List<Integer> list = SplitAndIntersection(rlistM, rlistN);
+		keywordVo kvo = new keywordVo(search_word, list);
+		kvo.setF_list_check(flcheck(kvo));
+		kvo.setWord_check(wordcheck(kvo));
+		return searchdao.mobileSearch(kvo);
+	}
+	
+	private int wordcheck(keywordVo kvo) {
+		if(kvo.getWord() == null || kvo.getWord() =="")
+			return 0;
+		else 
+			return 1;
+	}
+	
+	public List<TagVo> getTopTag2() {
+		// TODO Auto-generated method stub
+		return searchdao.getTopTag2();
+	}
+
+	public List<RecipeVo> mobileSearchTag(String word) {
+		return searchdao.mobileSearchTag(word);
+	}
+
+	public List<RecipeVo> getTopRecipe() {
+		// TODO Auto-generated method stub
+		return searchdao.getTopRecipe();
+	}
+
 
    ///////////////////////////////////////////////////////////////////////////////////
-   //////////////////////////// DB에서 특정 정보를 긁어오기 위한
-   /////////////////////////////////////////////////////////////////////////////////// 용도///////////////////////////////////////////////////////////////////////////////////
-   /////////////////////////////////////////////////////////////////////////////////// /////////////////////////////
+   //////////////////////////// DB에서 특정 정보를 긁어오기 위한 용도///////////////////
    ///////////////////////////////////////////////////////////////////////////////////
 
    // 모든 레시피의 재료를 반환한다.

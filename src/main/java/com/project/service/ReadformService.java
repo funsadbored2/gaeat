@@ -87,7 +87,8 @@ public class ReadformService {
       return readformDao.getRecipebookList(chef_no);
    }
    
-   //readform할시 작동
+
+	\//readform할시 작동
    
    public DatVo insertVo(DatVo datVo) {
       
@@ -158,4 +159,21 @@ public class ReadformService {
 	   
 	   return readformDao.dellike(vo);
 	   }
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//
+	//////////////////////////////////////////////////////////////////////////
+	public ReadformVo getRecipeInfo(int recipe_no) {
+		return readformDao.getRecipeInfo(recipe_no);
+	}
+
+	public String getRecipeMaterial(int recipe_no) {
+		return readformDao.getRecipeMaterial(recipe_no);
+	}
+
+	public List<RecipeContent> getRecipeContent(int recipe_no) {
+		return readformDao.getRecipeContent(recipe_no);
+	}
+	
 }

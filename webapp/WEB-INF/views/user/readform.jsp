@@ -660,11 +660,11 @@ pageEncoding="UTF-8"%>
                <c:if test="${authUser.chef_no == chef.chef_no}">
                
                <div style = "margin-bottom:20px">
-               <a href="${pageContext.request.contextPath }/read/delete?recipe_no=${readformVo2.recipe_no}&chef_no=${readformVo2.chef_no}" class="btn btn-default btn-sm" style="background-color:#b6c98f; border-style:none; float:right; margin-right:10px;" onclick="alert('삭제되었습니다.')"><span class="glyphicon glyphicon-trash"></span> 삭제</a>
+               <a href="${pageContext.request.contextPath }/read/delete?recipe_no=${readformVo2.recipe_no}&chef_no=${readformVo2.chef_no}" class="btn btn-default btn-sm" style="color:white;background-color:#b6c98f; border-style:none; float:right; margin-right:10px;" onclick="alert('삭제되었습니다.')"><span class="glyphicon glyphicon-trash"></span> 삭제</a>
                </a>
                
                
-               <a href="${pageContext.request.contextPath }/read/modify?recipe_no=${readformVo2.recipe_no}" class="btn btn-sm btn-default" style="background-color:#b6c98f; border-style:none; float:right; margin-right:20px;"><span class="glyphicon glyphicon-wrench"></span>  수정</a>
+               <a href="${pageContext.request.contextPath }/read/modify?recipe_no=${readformVo2.recipe_no}" class="btn btn-sm btn-default" style="color:white; background-color:#b6c98f; border-style:none; float:right; margin-right:20px;"><span class="glyphicon glyphicon-wrench"></span>  수정</a>
                </c:if>
                </div>
                

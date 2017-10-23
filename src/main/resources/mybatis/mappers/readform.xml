@@ -274,15 +274,48 @@
      
      </delete>
      
-      <select id="modifyData" parameterType="int" resultType="com.project.vo.ModifyVo">
+     <select id="modifyData" parameterType="int" resultType="com.project.vo.ModifyVo">
      
      <![CDATA[
-    select recipe_title,food_img,introduction,food_name,cooking_time,cooking_level,cooking_type,cooking_method,amount
+    select recipe_title,food_img,introduction,food_name,cooking_time,cooking_level,cooking_type,cooking_method,amount, recipebook_no
        from recipe
        where recipe_no=#{no}
     
     ]]>
      
+     </select>
+     
+     <select id = "getRecipebookName" parameterType = "int" resultType = "String">
+      <![CDATA[
+   	   select recipebook_name
+       from recipebook
+       where recipebook_no=#{no}
+    
+    ]]>
+     </select>
+     
+     <select id = "modifyIngre" parameterType = "int" resultType = "com.project.vo.ModifyIngreVo">
+     <![CDATA[
+     select material_no, amount
+     from material_history
+     where recipe_no = #{no}
+     ]]>
+     </select>
+     
+     <select id = "getMaterialName" parameterType = "int" resultType = "String">
+     <![CDATA[
+     select material_name
+     from material
+     where material_no = #{material_no}
+     ]]>
+     </select>
+     
+     <select id = "modifyContent" parameterType = "int" resultType = "com.project.vo.ModifyContentVo">
+     	<![CDATA[
+     		select oreder_no order_no, text_content, img_content
+     		from content
+     		where recipe_no = #{no}
+     	]]>
      </select>
     
 </mapper>

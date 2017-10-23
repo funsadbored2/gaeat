@@ -12,9 +12,22 @@ public class ModifyVo {
 	private String cooking_method;
 	private String amount;
 	private int recipebook_no;
+	private String recipebook_name;
 	public String getRecipe_title() {
 		return recipe_title;
 	}
+	
+	
+	public String getRecipebook_name() {
+		return recipebook_name;
+	}
+
+
+	public void setRecipebook_name(String recipebook_name) {
+		this.recipebook_name = recipebook_name;
+	}
+
+
 	public void setRecipe_title(String recipe_title) {
 		this.recipe_title = recipe_title;
 	}

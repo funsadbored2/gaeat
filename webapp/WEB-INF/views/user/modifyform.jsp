@@ -193,7 +193,7 @@
 	         	<div class="col-sm-5">
 				   <a class="btn btn-default btn-select">
 				   		<input type = "hidden" class = "btn-select-input" id = "" name = "" value = ""/>
-				   		<span class = "btn-select-value" style = "color:white">레시피북을 선택하세요</span>
+				   		<span class = "btn-select-value" style = "color:white">${modifyVo.recipebook_name}</span>
 				   		<span class = 'btn-select-arrow glyphicon glyphicon-chevron-down' style = "background-color:#b6c98f; color:white"></span>
 				   		<ul>
 				   			<c:forEach items = "${rbList}" var="vo">
@@ -263,42 +263,42 @@ function broseMainFile(){
                <select  style="background-color: white;"
                   class="form-control foodGenre" name="종류별">
                   <option value="">종류별</option>
-                  <option value="밑반찬">밑반찬</option>
-                  <option value="메인반찬">메인반찬</option>
-                  <option value="국/탕">국/탕</option>
-                  <option value="찌개">찌개</option>
-                  <option value="디저트">디저트</option>
-                  <option value="면/만두">면/만두</option>
-                  <option value="밥/죽/떡">밥/죽/떡</option>
-                  <option value="퓨전">퓨전</option>
-                  <option value="김치/젓갈/장류">김치/젓갈/장류</option>
-                  <option value="양념/소스/잼">양념/소스/잼</option>
-                  <option value="양식">양식</option>
-                  <option value="샐러드">샐러드</option>
-                  <option value="스프">스프</option>
-                  <option value="빵">빵</option>
-                  <option value="과자">과자</option>
-                  <option value="차/음료/술">차/음료/술</option>
-                  <option value="기타">기타</option>
+                  <option value="밑반찬" <c:if test="${modifyVo.cooking_type == '밑반찬'}">selected</c:if>>밑반찬</option>
+                  <option value="메인반찬" <c:if test="${modifyVo.cooking_type == '메인반찬'}">selected</c:if>>메인반찬</option>
+                  <option value="국/탕" <c:if test="${modifyVo.cooking_type == '국/탕'}">selected</c:if>>국/탕</option>
+                  <option value="찌개" <c:if test="${modifyVo.cooking_type == '찌개'}">selected</c:if>>찌개</option>
+                  <option value="디저트" <c:if test="${modifyVo.cooking_type == '디저트'}">selected</c:if>>디저트</option>
+                  <option value="면/만두" <c:if test="${modifyVo.cooking_type == '면/만두'}">selected</c:if>>면/만두</option>
+                  <option value="밥/죽/떡" <c:if test="${modifyVo.cooking_type == '밥/죽/떡'}">selected</c:if>>밥/죽/떡</option>
+                  <option value="퓨전" <c:if test="${modifyVo.cooking_type == '퓨전'}">selected</c:if>>퓨전</option><selected>
+                  <option value="김치/젓갈/장류" <c:if test="${modifyVo.cooking_type == '김치/젓갈/장류'}">selected</c:if>>김치/젓갈/장류</option>
+                  <option value="양념/소스/잼" <c:if test="${modifyVo.cooking_type == '양념/소스/잼'}">selected</c:if>>양념/소스/잼</option>
+                  <option value="양식" <c:if test="${modifyVo.cooking_type == '양식'}">selected</c:if>>양식</option>
+                  <option value="샐러드" <c:if test="${modifyVo.cooking_type == '샐러드'}">selected</c:if>>샐러드</option>
+                  <option value="스프" <c:if test="${modifyVo.cooking_type == '스프'}">selected</c:if>>스프</option>
+                  <option value="빵" <c:if test="${modifyVo.cooking_type == '빵'}">selected</c:if>>빵</option>
+                  <option value="과자" <c:if test="${modifyVo.cooking_type == '과자'}">selected</c:if>>과자</option>
+                  <option value="차/음료/술" <c:if test="${modifyVo.cooking_type == '차/음료/술'}">selected</c:if>>차/음료/술</option>
+                  <option value="기타" <c:if test="${modifyVo.cooking_type == '기타'}">selected</c:if>>기타</option>
                </select> 
 			</div>
             <div class = "col-sm-3 howtocook" style = "float:left">
                <select style="background-color: white;" class = "form-control howTo" name="방법별">
                   <option value="">방법별</option>
-                  <option value="볶음">볶음</option>
-                  <option value="끓이기">끓이기</option>
-                  <option value="부침">부침</option>
-                  <option value="조림">조림</option>
-                  <option value="무침">무침</option>
-                  <option value="비빔">비빔</option>
-                  <option value="찜">찜</option>
-                  <option value="절임">절임</option>
-                  <option value="튀김">튀김</option>
-                  <option value="삶기">삶기</option>
-                  <option value="굽기">굽기</option>
-                  <option value="데치기">데치기</option>
-                  <option value="회">회</option>
-                  <option value="기타">기타</option>
+                  <option value="볶음" <c:if test="${modifyVo.cooking_method == '볶음'}">selected</c:if>>볶음</option>
+                  <option value="끓이기" <c:if test="${modifyVo.cooking_method == '끓이기'}">selected</c:if>>끓이기</option>
+                  <option value="부침" <c:if test="${modifyVo.cooking_method == '부침'}">selected</c:if>>부침</option>
+                  <option value="조림" <c:if test="${modifyVo.cooking_method == '조림'}">selected</c:if>>조림</option>
+                  <option value="무침" <c:if test="${modifyVo.cooking_method == '무침'}">selected</c:if>>무침</option>
+                  <option value="비빔" <c:if test="${modifyVo.cooking_method == '비빔'}">selected</c:if>>비빔</option>
+                  <option value="찜" <c:if test="${modifyVo.cooking_method == '찜'}">selected</c:if>>찜</option>
+                  <option value="절임" <c:if test="${modifyVo.cooking_method == '절임'}">selected</c:if>>절임</option>
+                  <option value="튀김" <c:if test="${modifyVo.cooking_method == '튀김'}">selected</c:if>>튀김</option>
+                  <option value="삶기" <c:if test="${modifyVo.cooking_method == '삶기'}">selected</c:if>>삶기</option>
+                  <option value="굽기" <c:if test="${modifyVo.cooking_method == '굽기'}">selected</c:if>>굽기</option>
+                  <option value="데치기" <c:if test="${modifyVo.cooking_method == '데치기'}">selected</c:if>>데치기</option>
+                  <option value="회" <c:if test="${modifyVo.cooking_method == '회'}">selected</c:if>>회</option>
+                  <option value="기타" <c:if test="${modifyVo.cooking_method == '기타'}">selected</c:if>>기타</option>
                </select>
 			</div>
          </div>
@@ -307,83 +307,98 @@ function broseMainFile(){
 			<div class = "col-sm-3" style = "float:left">
                <select style="background-color: white;" name="인원 " class="form-control howMany">
                   <option value="">인원</option>
-                  <option value="1인분">1인분</option>
-                  <option value="2인분">2인분</option>
-                  <option value="3인분">3인분</option>
-                  <option value="4인분">4인분</option>
-                  <option value="5인분">5인분</option>
-                  <option value="6인분이상">6인분이상</option>
+                  <option value="1인분" <c:if test="${modifyVo.amount == '1인분'}">selected</c:if>>1인분</option>
+                  <option value="2인분" <c:if test="${modifyVo.amount == '2인분'}">selected</c:if>>2인분</option>
+                  <option value="3인분" <c:if test="${modifyVo.amount == '3인분'}">selected</c:if>>3인분</option>
+                  <option value="4인분" <c:if test="${modifyVo.amount == '4인분'}">selected</c:if>>4인분</option>
+                  <option value="5인분" <c:if test="${modifyVo.amount == '5인분'}">selected</c:if>>5인분</option>
+                  <option value="6인분이상" <c:if test="${modifyVo.amount == '6인분이상'}">selected</c:if>>6인분이상</option>
                </select>
 			</div>
             <div class = "col-sm-3" style = "float:left">
                 <select style="background-color: white;" name="시간" class="cookingTime form-control">
                   <option value="">시간</option>
-                  <option value="5분이내">5분이내</option>
-                  <option value="10분이내">10분이내</option>
-                  <option value="15분이내">15분이내</option>
-                  <option value="30분이내">30분이내</option>
-                  <option value="60분이내">60분이내</option>
-                  <option value="90분이내">90분이내</option>
-                  <option value="2시간이내">2시간이내</option>
-                  <option value="2시간이상">2시간이상</option>
+                  <option value="5분이내" <c:if test="${modifyVo.cooking_time == '5분이내'}">selected</c:if>>5분이내</option>
+                  <option value="10분이내" <c:if test="${modifyVo.cooking_time == '10분이내'}">selected</c:if>>10분이내</option>
+                  <option value="15분이내" <c:if test="${modifyVo.cooking_time == '15분이내'}">selected</c:if>>15분이내</option>
+                  <option value="30분이내" <c:if test="${modifyVo.cooking_time == '30분이내'}">selected</c:if>>30분이내</option>
+                  <option value="60분이내" <c:if test="${modifyVo.cooking_time == '60분이내'}">selected</c:if>>60분이내</option>
+                  <option value="90분이내" <c:if test="${modifyVo.cooking_time == '90분이내'}">selected</c:if>>90분이내</option>
+                  <option value="2시간이내" <c:if test="${modifyVo.cooking_time == '2시간이내'}">selected</c:if>>2시간이내</option>
+                  <option value="2시간이상" <c:if test="${modifyVo.cooking_time == '2시간이상'}">selected</c:if>>2시간이상</option>
                </select> 
             </div>
             <div class = "col-sm-3" style = "float:left">
                <select style="background-color: white;" name="난이도" class="cookingLevel form-control">
                   <option value="">난이도</option>
-                  <option value="아무나">아무나</option>
-                  <option value="초급">초급</option>
-                  <option value="중급">중급</option>
-                  <option value="고급">고급</option>
-                  <option value="신의 경지">신의 경지</option>
+                  <option value="아무나" <c:if test="${modifyVo.cooking_level == '아무나'}">selected</c:if>>아무나</option>
+                  <option value="초급" <c:if test="${modifyVo.cooking_level == '초급'}">selected</c:if>>초급</option>
+                  <option value="중급" <c:if test="${modifyVo.cooking_level == '중급'}">selected</c:if>>중급</option>
+                  <option value="고급" <c:if test="${modifyVo.cooking_level == '고급'}">selected</c:if>>고급</option>
+                  <option value="신의 경지" <c:if test="${modifyVo.cooking_level == '신의 경지'}">selected</c:if>>신의 경지</option>
                </select>
             </div>
          </div>
          
 
          <!-- 재료와 양 입력 -->
-         <div class="form-group ingreDiv_1">
-			<label for="title" class="col-sm-2 control-label"  style = "float:left; font-size:15px;">재료</label>
-			<div class = "foodInfo" style = "margin-bottom:10px;">
-				<div class = "col-sm-3">
-					<input type="text" class="form-control" name = "ingre_1" style = "margin-right:20px; float:left; background-color: white;" placeholder="재료를 적어주세요." value = "">
+         
+         <c:forEach items = "${ingreVoList }" var = "ingreVoList" >
+	         <div class="form-group ${ingreVoList.div_name }">
+				<label for="title" class="col-sm-2 control-label"  style = "float:left; font-size:15px;">재료</label>
+				<div class = "foodInfo" style = "margin-bottom:10px;">
+					<div class = "col-sm-3">
+						<input type="text" class="form-control" name = "${ingreVoList.ingre_name }" style = "margin-right:20px; float:left; background-color: white;" placeholder="재료를 적어주세요." value = "${ingreVoList.material_name }">
+					</div>
+					<div class = "col-sm-3">
+						<input type="text" class="form-control" name = "${ingreVoList.amount_name }" style = "margin-right:20px; float:left; background-color: white;" placeholder = "수량을 적어주세요." value = "${ingreVoList.amount }" >
+			        </div>
+		            <div class="btn-group col-sm-3">
+		               <button class="btn addIngre" name = "${ingreVoList.div_name }" style="background-color: #b6c98f; color: white;">재료추가</button> 
+		            	<c:if test = "${ingreVoList.div_name != 'ingreDiv_1'}">
+		            		 <button class='btn btn-danger removeIngre' name ="${ingreVoList.div_name }" style = 'margin-left:5px; background-color: #ed9a89; color:white; border:0px'>재료 삭제</button>
+		            	</c:if>
+		            </div>
 				</div>
-				<div class = "col-sm-3">
-					<input type="text" class="form-control" name = "amount_1" style = "margin-right:20px; float:left; background-color: white;" placeholder = "수량을 적어주세요." value = "" >
-		        </div>
-	            <div class="btn-group col-sm-3">
-	               <button class="btn addIngre" name = "ingreDiv_1" style="background-color: #b6c98f; color: white;">재료추가</button> 
-	            </div>
-			</div>
-         </div>
+	         </div>
+         </c:forEach>
+         <input id = "ingreIdentifier" type = "hidden" value = "${last_ingre_no}">
          
          <hr style = "border: solid 0.5px #528540; margin-top:50px;">
          
 
 		<!--  사진 첨부를 위한 제이쿼리 메소드  -->
 		<%-- <img class = "emptyImage" src = "${pageContext.request.contextPath}/assets/img/uploadspace.gif" onclick="broseMainFile();" style = "margin-left:50px; width:300px; height:300px; cursor:pointer;"/> --%>
-		<div class="div_1 form-group"
+		
+ 
+	<c:forEach items = "${contentVoList}" var = "contentVoList">
+		 <div class="${contentVoList.div_name} form-group"
 				style="float: left; width: 1099px; margin-top: 10px; margin-bottom: 30px; margin-left:20px ">
-			<label class="col-sm-2 order_1" name="order_1"
-				style="border-right: 0.5px solid green; color: #528540; margin-top: 20px; font-weight: bold; font-size: 25px;">1 단계</label>
+			<label class="col-sm-2 ${contentVoList.order_name}" name="${contentVoList.order_name}"
+				style="border-right: 0.5px solid green; color: #528540; margin-top: 20px; font-weight: bold; font-size: 25px;">${contentVoList.order_no} 단계</label>
 			<div class="promo-flex col-sm-8" style="margin-top: 10px; margin-bottom: 10px; ">
 		
 				<div data-ix="blog-card" class="promo-card" style="float: left">
-					<img class="orderEmptyImage" name="div_1" src="${pageContext.request.contextPath}/assets/img/photobox.png"
+					<img class="orderEmptyImage" name="${contentVoList.div_name}" src="${contentVoList.img_content}"
 						style="cursor: pointer; width: 100%"> 
-						<input id="order_1" type="file" class="order_photo" name="div_1" style="display: none;" />
+						<input id="${contentVoList.order_name}" type="file" class="order_photo" name="${contentVoList.div_name}" style="display: none;"/>
 				</div>
 				<div class="blog-description" style="width: 320px; height: 350px; float: left;">
-					<textarea class="textContent_1"
+					<textarea class="${contentVoList.content_name}"
 							style="width: 100%; height: 100%; border: 1px solid grey; background-color: #eff0f2; padding:10px; resize: none; border-top-right-radius: 10px; border-bottom-right-radius: 10px; font-size:15px;"
-							value="";></textarea>
+							value="";>${contentVoList.text_content}</textarea>
 				</div>
 			</div>
 			<div class="btn-group col-sm-1" style="padding-right: 6px; padding-top: 15px;">
-				<button class="orderAddBtn btn btn-success addOrder" name="div_1" style="border: 0; background-color: #b6c98f; color: white;">단계 추가</button>
-				<input id="div_1" type="text" name="order_1" value="1" style="display: none;" />
+				<button class="orderAddBtn btn btn-success addOrder" name="${contentVoList.div_name}" style="border: 0; background-color: #b6c98f; color: white;">단계 추가</button>
+				<input id="${contentVoList.div_name}" type="text" name="${contentVoList.order_name}" value="${contentVoList.order_no}" style="display: none;" />
+				<c:if test = "${contentVoList.order_no} != 1">
+				<button class="orderRemoveBtn btn btn-danger addOrder" name = "${contentVoList.div_name}" style = "float:bottom; border:0; background-color: #ed9a89; color: white; margin-top:10px">단계 제거</button>" 
+				</c:if>
 			</div>
 		</div>
+		<input id = "orderIdentifier" type = "hidden" value = "${last_order_no}">
+	</c:forEach>
 
 		<style>
 		 .tagInsert {
@@ -426,6 +441,27 @@ var ingreArray = new Array();
 ingreArray[0] = 1;
 var ingreAuto = new Array();
 var tagArray = new Array(); 
+
+//orderArray조정
+	int orderNo = $("#orderIdentifier").val();
+
+	divNo = orderNo;
+	
+	for(var i = 1; i < orderNo; i++){
+		
+		orderArray[i] = i + 1;
+
+	}
+
+	int ingreOrderNo = $("#ingreIdentifier").val();
+
+	ingreNo = ingreOrderNo;
+
+	for(var i = 1; i < ingreOrderNo; i++){
+		ingreArray[i] = i + 1;
+	}
+
+	int IngreNo = $("#ingreIdentifier").val	
 
 
 //자바 스크립트 시작 
@@ -488,8 +524,6 @@ $(document).ready(function(){
 			 $("." + tagname).remove();
 			 
 	})
-	
-	
 	
 		///시작시 ingre1도 자동 완성 가능하도록 해주는 부분
 	

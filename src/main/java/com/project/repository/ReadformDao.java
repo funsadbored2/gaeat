@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.project.vo.DatVo;
 import com.project.vo.LikeVo;
+import com.project.vo.ModifyContentVo;
+import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
@@ -93,9 +95,44 @@ public class ReadformDao {
     }
     
     //레시피 수정창
+  //레시피 수정창
     public ModifyVo modifyData(int no) {
-      return sqlSession.selectOne("readform.modifyData",no);
-   }
+       
+    	ModifyVo vo = sqlSession.selectOne("readform.modifyData",no);
+    	
+    	vo.setRecipebook_name(sqlSession.selectOne("readform.getRecipebookName",vo.getRecipebook_no()));
+   
+       return vo;
+    }
+    
+    public List<ModifyIngreVo> modifyIngre(int no){
+    	
+    	List<ModifyIngreVo> ingreList = sqlSession.selectList("readform.modifyIngre", no);
+    	
+    	for(int i =0; i < ingreList.size(); i++){
+    		int material_no =  ingreList.get(i).getMaterial_no();
+    		String material_name = sqlSession.selectOne("readform.getMaterialName", material_no);
+    		ingreList.get(i).setMaterial_name(material_name);
+    		
+    		int order = i + 1;
+    		String ingre_name = "ingre_" + order;
+    		String amount_name = "amount_" + order;
+    		String div_name = "ingreDiv_" + order;
+    		ingreList.get(i).setIngre_name(ingre_name);
+    		ingreList.get(i).setAmount_name(amount_name);
+    		ingreList.get(i).setDiv_name(div_name);
+    	}
+    	
+    	
+    	return ingreList;
+    }
+    
+    public List<ModifyContentVo> modifyContent(int no) {
+ 	   
+       List<ModifyContentVo> modifyVoList = sqlSession.selectList("readform.modifyContent", no);
+ 	   
+ 	  return modifyVoList;
+    }
     
     //왼쪽 항목
     public UserpageVo getUser(int chef_no) {

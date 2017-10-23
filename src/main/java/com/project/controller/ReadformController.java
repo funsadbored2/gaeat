@@ -18,6 +18,8 @@ import com.project.service.ReadformService;
 import com.project.service.UserpageService;
 import com.project.vo.DatVo;
 import com.project.vo.LikeVo;
+import com.project.vo.ModifyContentVo;
+import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
@@ -133,10 +135,45 @@ public class ReadformController {
       int no=readformVo.getRecipe_no();
       modifyVo=readformService.modifyData(no);
       
-      model.addAttribute("modifyVo",modifyVo);
+      System.out.println(modifyVo.toString());
+      
+      List<ModifyIngreVo> ingreVoList = readformService.modifyIngre(no);
+      
+      int last_ingre_no = ingreVoList.size();
+      
+      System.out.println(ingreVoList);
+      
+      List<ModifyContentVo> contentVoList = readformService.modifyContent(no);
+      
+      int last_order_no = 1;
+      
+      for(int i = 0; i < contentVoList.size(); i++) {
+		   
+    	  last_order_no = + 1; 
+    	  
+ 		  int order_no = contentVoList.get(i).getOrder_no();
+ 		  
+ 		  String div_name = "div_" + order_no;
+ 		  String order_name = "order_" + order_no;
+ 		  String content_name = "textContent_" + order_no;
+ 		  
+ 		 contentVoList.get(i).setDiv_name(div_name);
+ 		 contentVoList.get(i).setContent_name(content_name);
+ 		 contentVoList.get(i).setOrder_name(order_name);
+ 		 
+ 	   }
+      
+      System.out.println(contentVoList);
+      
+      model.addAttribute("last_ingre_no", last_ingre_no);
+      model.addAttribute("last_order_no", last_order_no);
+      model.addAttribute("modifyVo", modifyVo);
+      model.addAttribute("ingreVoList", ingreVoList);
+      model.addAttribute("contentVoList",contentVoList);
       
       return "user/modifyform";
    }
+   
    
    
    //js로 가는 구문들

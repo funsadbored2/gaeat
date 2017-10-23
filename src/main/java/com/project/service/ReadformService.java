@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.project.repository.ReadformDao;
 import com.project.vo.DatVo;
 import com.project.vo.LikeVo;
+import com.project.vo.ModifyContentVo;
+import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.ScrapVo;
@@ -62,10 +64,18 @@ public class ReadformService {
       return readformDao.deleteRecipe(no);
    }
    
-   //레시피 수정
+//레시피 수정
    
    public ModifyVo modifyData(int no) {
       return readformDao.modifyData(no);
+   }
+   
+   public List<ModifyIngreVo> modifyIngre(int no){
+	   return readformDao.modifyIngre(no);
+   }
+   
+   public List<ModifyContentVo> modifyContent(int no) {
+	   return readformDao.modifyContent(no);
    }
    
    //왼쪽 항목

@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
 											
 												<c:if test = "${followcheck == 1}">
 													
-													<a href="#" class="btn btn-xs btn-success followed" name = "${chef.chef_no}"> <span class="glyphicon glyphicon-heart"></span>팔로우 중</a>
+													<a href="#" class="btn btn-xs btn-success followed" name = "${chef.chef_no}"> <span class="glyphicon glyphicon-heart"></span> 팔로우 중</a>
 													
 												</c:if>
 												
@@ -707,7 +707,7 @@ pageEncoding="UTF-8"%>
 					 <div>
 					  
 					  	<div style="margin-top:50px; margin-bottom: 50px; margin-left:30px; margin-right:30px;">
-				     		<h6 class="line-title">연관된 다른 레시피</h6> 
+				     		<h6 class="line-title">셰프의 다른 레시피</h6> 
 				    	</div>
 						  
 						  <div class="container-fluid" style = "margin-left:5px; margin-right:5px;">

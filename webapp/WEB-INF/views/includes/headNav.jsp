@@ -589,6 +589,14 @@ clear: both
 			</script>
 			<!-- 검색 버튼 클릭 -->
 			<script type="text/javascript">
+			
+				$('#search_word').keypress(function(event){
+				     if ( event.which == 13 ) {
+				         $('#search_btn').click();
+				         return false;
+				     }
+				});
+			
 				$("#search_btn").on("click",function() {
 					var inputkey = $("#search_word").val();
 					console.log(inputkey);

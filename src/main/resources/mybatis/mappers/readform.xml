@@ -273,7 +273,7 @@
      <select id="modifyData" parameterType="int" resultType="com.project.vo.ModifyVo">
      
      <![CDATA[
-    select recipe_title,food_img,introduction,food_name,cooking_time,cooking_level,cooking_type,cooking_method,amount, recipebook_no
+       select recipe_title,food_img,introduction,food_name,cooking_time,cooking_level,cooking_type,cooking_method,amount, recipebook_no, chef_no
        from recipe
        where recipe_no=#{no}
     

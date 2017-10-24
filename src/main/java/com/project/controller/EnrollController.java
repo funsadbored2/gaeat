@@ -65,6 +65,26 @@ public class EnrollController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "updateRecipeInfo", method = RequestMethod.POST)
+	public int updateRecipeInfo(@ModelAttribute("RecipeVo") RecipeInfo recipeVo) {
+		
+		System.out.println(recipeVo.getRecipebookName());
+		System.out.println(recipeVo.getMainFile());
+		System.out.println("여기임");
+		
+		enrollService.UpdateRecipeInfo(recipeVo);
+		
+		System.out.println("갔다옴!!");
+		
+		recipeVo.getRecipe_no();
+		
+		System.out.println(recipeVo.getRecipe_no());
+		
+		return recipeVo.getRecipe_no();
+		
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "enrollOrder", method = RequestMethod.POST)
 	public void enrollOrder(@ModelAttribute("recipeContentVo") RecipeContent recipeContentVo){
 		

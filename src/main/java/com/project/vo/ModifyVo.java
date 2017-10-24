@@ -13,6 +13,31 @@ public class ModifyVo {
 	private String amount;
 	private int recipebook_no;
 	private String recipebook_name;
+	private int chef_no;
+	private int recipe_no;
+	
+	
+	
+	public int getRecipe_no() {
+		return recipe_no;
+	}
+
+
+	public void setRecipe_no(int recipe_no) {
+		this.recipe_no = recipe_no;
+	}
+
+
+	public int getChef_no() {
+		return chef_no;
+	}
+
+
+	public void setChef_no(int chef_no) {
+		this.chef_no = chef_no;
+	}
+
+
 	public String getRecipe_title() {
 		return recipe_title;
 	}
@@ -106,10 +131,11 @@ public class ModifyVo {
 	}
 	@Override
 	public String toString() {
-		return "Modify [recipe_title=" + recipe_title + ", food_img=" + food_img + ", introduction=" + introduction
+		return "ModifyVo [recipe_title=" + recipe_title + ", food_img=" + food_img + ", introduction=" + introduction
 				+ ", food_name=" + food_name + ", cooking_level=" + cooking_level + ", cooking_time=" + cooking_time
 				+ ", cooking_type=" + cooking_type + ", cooking_method=" + cooking_method + ", amount=" + amount
-				+ ", recipebook_no=" + recipebook_no + "]";
+				+ ", recipebook_no=" + recipebook_no + ", recipebook_name=" + recipebook_name + ", chef_no=" + chef_no
+				+ ", recipe_no=" + recipe_no + "]";
 	}
 	
 	

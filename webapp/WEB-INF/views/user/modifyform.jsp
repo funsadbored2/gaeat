@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,260 +10,271 @@
 
 <title>가려서 먹자! 가릿</title>
 
-<link href="${pageContext.request.contextPath}/assets/jqueryui/jquery-ui.min.css"  rel="stylesheet" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/jqueryui/jquery.js"></script>
-<script type = "text/javascript" src = "${pageContext.request.contextPath}/assets/jqueryui/jquery-ui.min.js"></script>
+<link
+	href="${pageContext.request.contextPath}/assets/jqueryui/jquery-ui.min.css"
+	rel="stylesheet" type="text/css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/jqueryui/jquery.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/jqueryui/jquery-ui.min.js"></script>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script> --%>
-<link href="${pageContext.request.contextPath}/assets/css/enrollform.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/favicon.ico"/>
+<link
+	href="${pageContext.request.contextPath}/assets/css/enrollform.css"
+	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/main.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/img/favicon.ico" />
 </head>
 
 <body>
 
-    <c:import url="/WEB-INF/views/includes/headNav.jsp"></c:import>
-   	<div class="wrap-loading display-none">
-    	<div>
-    		<img value="${pageContext.request.contextPath}/assets/img/saving.gif" style = "height:50px; width:50px;"/>
-    	</div>
-	</div> 
-   
-   <div class="container" style = "background-color:#f0f0f0; margin-top:50px; margin-bottom:100px; padding-bottom:30px;" >
-      <h2 style = "margin-top:50px; margin-left:30px">레시피 수정하기</h2>
-      	<br>
-      	
-     	<hr style = "border: solid 0.5px #528540; margin-bottom: 50px;">
-     	
-   		<div class="form-horizontal" role="form">   
-	      <div class="col-sm-8" style = "margin-top:20px">
-	         <div class="form-group">
-	            <label for="title" class="col-sm-2 control-label" style="font-size:15px;">레시피 제목</label>
-	            <div class="col-sm-10">
-	               <input type="text" class="form-control" id="recipeTitle" style="background-color: white;"
-	                  placeholder="레시피의 제목을 알려주세요 EX) 아플 때 기운이 나는 전복죽 레시피" value="${modifyVo.recipe_title}">
-	            </div>
-	         </div>
-	         <div class="form-group">
-	            <label for="foodName" class="col-sm-2 control-label" style="font-size:15px;">요리명</label>
-	            <div class="col-sm-10">
-	               <input type="text" class="form-control" id="foodTitle" style="background-color: white;"
-	                  placeholder="요리명을 입력해주세요 EX) 파멸의 해장국" value="${modifyVo.food_name}">
-	            </div>
-	         </div>
-	         <div class="form-group">
-	            <label for="title" class="col-sm-2 control-label" style="font-size:15px;">요리 소개</label>
-	            <div class="col-sm-10">
-	               <textarea type="text" class="form-control" id="introduction" style = "resize: none; background-color: white;" placeholder="요리를 간단하게 설명해주세요 EX) 가볍게 구운 검은깨 두부에 매운 파무침을 얹어 만든 고소하고 매콤한 두부 요리 ">${modifyVo.introduction}</textarea>
-	            </div>
-	         </div>
-         
-<style>
+	<input id="getChefNo" type="hidden" value="${modifyVo.chef_no}">
+	<input id = "getRecipeNo" type = "hidden" value = "${modifyVo.recipe_no }">
+	<c:import url="/WEB-INF/views/includes/headNav.jsp"></c:import>
+	<div class="wrap-loading display-none">
+		<div>
+			<img value="${pageContext.request.contextPath}/assets/img/saving.gif"
+				style="height: 50px; width: 50px;" />
+		</div>
+	</div>
 
-.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
-	position:absolute; 
-	
-    left:0;
+	<div class="container"
+		style="background-color: #f0f0f0; margin-top: 50px; margin-bottom: 100px; padding-bottom: 30px;">
+		<h2 style="margin-top: 50px; margin-left: 30px">레시피 수정하기</h2>
+		<br>
 
-    right:0;
+		<hr style="border: solid 0.5px #528540; margin-bottom: 50px;">
 
-    top:0;
+		<div class="form-horizontal" role="form">
+			<div class="col-sm-8" style="margin-top: 20px">
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label"
+						style="font-size: 15px;">레시피 제목</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="recipeTitle"
+							style="background-color: white;"
+							placeholder="레시피의 제목을 알려주세요 EX) 아플 때 기운이 나는 전복죽 레시피"
+							value="${modifyVo.recipe_title}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="foodName" class="col-sm-2 control-label"
+						style="font-size: 15px;">요리명</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="foodTitle"
+							style="background-color: white;"
+							placeholder="요리명을 입력해주세요 EX) 파멸의 해장국"
+							value="${modifyVo.food_name}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label"
+						style="font-size: 15px;">요리 소개</label>
+					<div class="col-sm-10">
+						<textarea type="text" class="form-control" id="introduction"
+							style="resize: none; background-color: white;"
+							placeholder="요리를 간단하게 설명해주세요 EX) 가볍게 구운 검은깨 두부에 매운 파무침을 얹어 만든 고소하고 매콤한 두부 요리 ">${modifyVo.introduction}</textarea>
+					</div>
+				</div>
 
-    bottom:0;
+				<style>
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1000;
+	background: rgba(0, 0, 0, 0.3);
 
-	z-index : 1000;
-
-    background: rgba(0,0,0,0.3);
-
-   /*  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');
+	/*  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');
  */
 }
 
-.wrap-loading div{ /*로딩 이미지*/
-
-   position:fixed; 
-
-    top:50%;
-
-    left:50%;
-    
-    bottom:50%;
-    
-    right:50%;
-/* 
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	bottom: 50%;
+	right: 50%;
+	/* 
     margin-left: -21px;
 
     margin-top: -21px; */
-
 }
 
-.display-none{ /*감추기*/
-
-    display:none;
-
+.display-none { /*감추기*/
+	display: none;
 }
-
 
 .btn-select {
-    position: relative;
-    padding: 0;
-    min-width: 236px;
-    width: 100%;
-    border-radius: 0;
-    margin-bottom: 20px;
-    border
+	position: relative;
+	padding: 0;
+	min-width: 236px;
+	width: 100%;
+	border-radius: 0;
+	margin-bottom: 20px;
+	border
 }
 
 .btn-select .btn-select-value {
-    padding: 6px 12px;
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 34px;
-    text-align: left;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    border-top: none !important;
-    border-bottom: none !important;
-    border-left: none !important;
+	padding: 6px 12px;
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 34px;
+	text-align: left;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	border-top: none !important;
+	border-bottom: none !important;
+	border-left: none !important;
 }
 
 .btn-select .btn-select-arrow {
-    float: right;
-    line-height: 20px;
-    padding: 6px 10px;
-    top: 0;
+	float: right;
+	line-height: 20px;
+	padding: 6px 10px;
+	top: 0;
 }
 
 .btn-select ul {
-    display: none;
-    background-color: #eff0f2;
-    color: black;
-    clear: both;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: none !important;
-    position: absolute;
-    left: -1px;
-    right: -1px;
-    top: 33px;
-    z-index: 999;
+	display: none;
+	background-color: #eff0f2;
+	color: black;
+	clear: both;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	border-top: none !important;
+	position: absolute;
+	left: -1px;
+	right: -1px;
+	top: 33px;
+	z-index: 999;
 }
 
 .btn-select ul li {
-    padding: 3px 6px;
-    text-align: left;
+	padding: 3px 6px;
+	text-align: left;
 }
 
 .btn-select ul li:hover {
-    background-color: #b6c98f;
+	background-color: #b6c98f;
 }
 
 .btn-select ul li.selected {
-    color: #eff0f2;
+	color: #eff0f2;
 }
 
 /* info Start */
-.btn-select.btn-info:hover, .btn-select.btn-info:active, .btn-select.btn-info.active {
-    border-color: #b6c98f;
+.btn-select.btn-info:hover, .btn-select.btn-info:active, .btn-select.btn-info.active
+	{
+	border-color: #b6c98f;
 }
 
 .btn-select.btn-info ul li.selected {
-    background-color: #b6c98f;
-    color: black;
+	background-color: #b6c98f;
+	color: black;
 }
 
 .btn-select.btn-info ul {
-    border: #b6c98f 1px solid;
+	border: #b6c98f 1px solid;
 }
 
 .btn-select.btn-default .btn-select-value {
-    background-color: #b6c98f;
-    border: #eff0f2 1px solid;
+	background-color: #b6c98f;
+	border: #eff0f2 1px solid;
 }
 
 /* info End */
-
 }
-         
 </style>
-	        <div class="form-group">
-	         	<label for="title" class ="col-sm-2 control-label" style="font-size:15px;">레시피북</label>
-	         	<div class="col-sm-5">
-				   <a class="btn btn-default btn-select">
-				   		<input type = "hidden" class = "btn-select-input" id = "" name = "" value = ""/>
-				   		<span class = "btn-select-value" style = "color:white">${modifyVo.recipebook_name}</span>
-				   		<span class = 'btn-select-arrow glyphicon glyphicon-chevron-down' style = "background-color:#b6c98f; color:white"></span>
-				   		<ul>
-				   			<c:forEach items = "${rbList}" var="vo">
-								<li>${vo.recipebookName}</li>
-							</c:forEach>
-				   		</ul>
-				   </a>
-	          </div>
-	        </div>
-	      </div>
-      
-      
-<!--  사진 첨부를 위한 제이쿼리 메소드  -->
- <script>
- 
-function broseMainFile(){
-
- 	$(".main_photo").click();
-    
-    $(".main_photo").on("change",handleImageFile);
-    
-    function handleImageFile(e){
-    	
-    	var files = e.target.files;
-    	var filesArr = Array.prototype.slice.call(files);
-    
-    	filesArr.forEach(function(f){
-    		if(!f.type.match("image.*")){
-    			alert("확장자는 이미지 확장자만 가능합니다.");
-    			return;
-    		}
-    		
-    		sel_file = f;
-    		
-    		var reader = new FileReader();
-    	 	reader.onload = function(e) {
-    	 		
-    	 		$(".main_image").attr("src",e.target.result);
-    	 		
- 	  	 	return false;
-    	 			
-    	 	}
-    	 	reader.readAsDataURL(f);
-    	});
-    	
-    }
-
-};
-
-</script>
-
-	
-		<div class="form-group">
-	       <div class = "col-sm-4">
-		       <form id = "send_main_image" enctype= "multipart/form-data" action = "${pageContext.request.contextPath}/enrollform/enrollPhoto" method="post">
-					 <input type="file" id ="main_photo" class="main_photo" name = "file" style = "display:none;"/>
-			         <img class = "main_image" src = "${modifyVo.food_img}" onclick="broseMainFile();" style = "margin-left:50px; width:300px; height:300px; cursor:pointer;"/>
-				</form>
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label"
+						style="font-size: 15px;">레시피북</label>
+					<div class="col-sm-5">
+						<a class="btn btn-default btn-select"> <input type="hidden"
+							class="btn-select-input" id="" name="" value="" /> <span
+							class="btn-select-value" style="color: white">${modifyVo.recipebook_name}</span>
+							<span class='btn-select-arrow glyphicon glyphicon-chevron-down'
+							style="background-color: #b6c98f; color: white"></span>
+							<ul>
+								<c:forEach items="${rbList}" var="vo">
+									<li>${vo.recipebookName}</li>
+								</c:forEach>
+							</ul>
+						</a>
+					</div>
+				</div>
 			</div>
-		</div>
 
-         <hr style = "border: solid 0.5px #528540; margin-bottom: 50px;">
-         
-        <%--  <div class="form-group">
-            <label for="category" class="col-sm-2 control-label" style="font-size:15px;">세부사항</label>
-			<div class = "col-sm-3" style = "floar:left;"> 
-               <select  style="background-color: white;"
-                  class="form-control foodGenre" name="종류별">
-                  <option value="">종류별</option>
-                  <option value="밑반찬" <c:if test="${modifyVo.cooking_type == '밑반찬'}">selected</c:if>>밑반찬</option>
+
+			<!--  사진 첨부를 위한 제이쿼리 메소드  -->
+			<script>
+				function broseMainFile() {
+
+					$(".main_photo").click();
+
+					$(".main_photo").on("change", handleImageFile);
+
+					function handleImageFile(e) {
+
+						var files = e.target.files;
+						var filesArr = Array.prototype.slice.call(files);
+
+						filesArr.forEach(function(f) {
+							if (!f.type.match("image.*")) {
+								alert("확장자는 이미지 확장자만 가능합니다.");
+								return;
+							}
+
+							sel_file = f;
+
+							var reader = new FileReader();
+							reader.onload = function(e) {
+
+								$(".main_image").attr("src", e.target.result);
+
+								return false;
+
+							}
+							reader.readAsDataURL(f);
+						});
+
+					}
+
+				};
+			</script>
+
+
+			<div class="form-group">
+				<div class="col-sm-4">
+					<form id="send_main_image" enctype="multipart/form-data"
+						action="${pageContext.request.contextPath}/enrollform/enrollPhoto"
+						method="post">
+						<input type="file" id="main_photo" class="main_photo" name="file"
+							style="display: none;" /> <img class="main_image"
+							src="${modifyVo.food_img}" onclick="broseMainFile();"
+							style="margin-left: 50px; width: 300px; height: 300px; cursor: pointer;" />
+					</form>
+				</div>
+			</div>
+
+			<hr style="border: solid 0.5px #528540; margin-bottom: 50px;">
+
+			<%-- <div class="form-group">
+				<label for="category" class="col-sm-2 control-label"
+					style="font-size: 15px;">세부사항</label>
+				<div class="col-sm-3" style="floar: left;">
+					<select style="background-color: white;"
+						class="form-control foodGenre" name="종류별">
+						<option value="">종류별</option>
+						<option value="밑반찬"<c:if test="${modifyVo.cooking_type == '밑반찬'}">selected</c:if>>밑반찬</option>
                   <option value="메인반찬" <c:if test="${modifyVo.cooking_type == '메인반찬'}">selected</c:if>>메인반찬</option>
                   <option value="국/탕" <c:if test="${modifyVo.cooking_type == '국/탕'}">selected</c:if>>국/탕</option>
                   <option value="찌개" <c:if test="${modifyVo.cooking_type == '찌개'}">selected</c:if>>찌개</option>
@@ -338,8 +350,8 @@ function broseMainFile(){
                </select>
             </div>
          </div>
-          --%>
-
+          
+ --%>
          <!-- 재료와 양 입력 -->
          
          <c:forEach items = "${ingreVoList }" var = "ingreVoList" >
@@ -441,8 +453,11 @@ ingreArray[0] = 1;
 var ingreAuto = new Array();
 var tagArray = new Array(); 
 
-//orderArray조정
-	int orderNo = $("#orderIdentifier").val();
+//자바 스크립트 시작 
+$(document).ready(function(){
+	
+	//orderArray조정
+	var orderNo = $("#orderIdentifier").val();
 
 	divNo = orderNo;
 	
@@ -452,19 +467,13 @@ var tagArray = new Array();
 
 	}
 
-	int ingreOrderNo = $("#ingreIdentifier").val();
+	var ingreOrderNo = $("#ingreIdentifier").val();
 
 	ingreNo = ingreOrderNo;
 
 	for(var i = 1; i < ingreOrderNo; i++){
 		ingreArray[i] = i + 1;
 	}
-
-	int IngreNo = $("#ingreIdentifier").val	
-
-
-//자바 스크립트 시작 
-$(document).ready(function(){
 	
 	$(document).on("keydown",".tagInsert",function (key) {
 		 
@@ -867,7 +876,8 @@ $(document).ready(function(){
 			
 	 		console.log("딜리버리 들어옴");
 	 		
-		    var userNo = $("#userNo").val();
+	 		var recipe_no = $("#getRecipeNo").val();
+		    var userNo = $("#getChefNo").val();
 			var	recipeTitle= $("#recipeTitle").val();
 			var	foodName= $("#foodTitle").val();
 			var	introduction = $("#introduction").val();
@@ -878,13 +888,9 @@ $(document).ready(function(){
 			var cookingLevel = $(".cookingLevel").val();
 			var recipebookName = $(".btn-select-input").val();
 		    
-			var data = $("#main_photo")[0].files[0];
-		
 			var formData = new FormData();
 			
-			formData.append("mainFile", data);
 			formData.append("userNo", userNo);
-		  	formData.append("userNo", userNo);
 			formData.append("recipeTitle", recipeTitle);
 			formData.append("foodName", foodName);
 			formData.append("introduction", introduction);
@@ -893,10 +899,23 @@ $(document).ready(function(){
 			formData.append("amount", amount);
 			formData.append("cookingTime", cookingTime);
 			formData.append("cookingLevel", cookingLevel);
-			formData.append("recipebookName", recipebookName);  
+			formData.append("recipebookName", recipebookName); 
+			
+			console.log(userNo + recipeTitle + foodName);
+
+			var data = $("#main_photo")[0].files[0];
+			
+			if(data == null){
+				console.log("이미지 변화 없는 곳으로 들어옴");
+				data = "이미지 변화 없음";
+				formData.append("NoPhotoChange", data);
+			} else{
+				console.log("이미지 변화 있음");
+				formData.append("mainFile", data);
+			}
 		
 			  $.ajax({
-        		 url: "${pageContext.request.contextPath}/enrollform/enrollInfo",
+        		 url: "${pageContext.request.contextPath}/enrollform/updateRecipeInfo",
                  processData: false,
                  contentType: false,
                  data: formData,

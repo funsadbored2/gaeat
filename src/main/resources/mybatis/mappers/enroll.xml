@@ -44,6 +44,14 @@
 		
 	</insert>
 	
+	<select id = "OriginalRecipeInofo" parameterType = "int" resultType = "String">
+		<![CDATA[
+			select food_img
+			from recipe
+			where recipe_no = #{no}
+		]]>
+	</select>
+	
 	<insert id="EnrollContent" parameterType="com.project.vo.RecipeContent">
 
 			<![CDATA[
@@ -160,5 +168,38 @@
 		
 	]]>
 	</select>
+	
+	<update id = "UpdateRecipeInfoNotReiebook" parameterType = "com.project.vo.RecipeInfo">
+		<![CDATA[
+			update recipe
+			set recipe_title = #{recipeTitle},
+			cooking_type = #{cookingType},
+			cooking_method = #{cookingMethod},
+			amount= #{amount},
+			food_img = "이미지 없음",
+			cooking_time= #{cookingTime}
+			cooking_level = #{cookingLevel},
+			food_name= #{foodName},
+			introduction= #{introduction}
+			where recipe_no = #{recipeNo}
+		]]>
+	</update>
+	
+	<update id ="UpdateRecipeInfo" parameterType = "com.project.vo.RecipeInfo" >
+		<![CDATA[
+			update recipe
+			set recipe_title = #{recipeTitle},
+			recipebook_no = #{recipebook_no},
+			cooking_type = #{cookingType},
+			cooking_method = #{cookingMethod},
+			amount= #{amount},
+			food_img = "이미지 없음",
+			cooking_time= #{cookingTime}
+			cooking_level = #{cookingLevel},
+			food_name= #{foodName},
+			introduction= #{introduction}
+			where recipe_no = #{recipeNo}
+		]]>
+	</update>
 
 </mapper>

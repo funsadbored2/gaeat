@@ -165,6 +165,8 @@ public class ReadformController {
  		 
  	   }
       
+      modifyVo.setRecipe_no(no);
+      
       System.out.println(contentVoList);
       
       model.addAttribute("last_ingre_no", last_ingre_no);

@@ -20,6 +20,7 @@ public class RecipeInfo {
 	private String cookingTime;
 	private String cookingLevel;
 	private int recipebook_no;
+	private String noPhotoChange;
 	private MultipartFile mainFile;
 	
 	public RecipeInfo() {}
@@ -30,6 +31,14 @@ public class RecipeInfo {
 
 
 
+
+	public String getNoPhotoChange() {
+		return noPhotoChange;
+	}
+
+	public void setNoPhotoChange(String noPhotoChange) {
+		this.noPhotoChange = noPhotoChange;
+	}
 
 	public void setMainFile(MultipartFile mainFile) {
 		this.mainFile = mainFile;

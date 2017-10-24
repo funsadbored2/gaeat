@@ -10,6 +10,10 @@ public class RecipeInfo {
 	
 	private int recipe_no;
 	private int userNo;
+	//리드폼에 뿌리기 위해서
+	private String foodImage;
+	
+	private String nickname;
 	private String recipeTitle;
 	private String recipebookName;
 	private String foodName;
@@ -31,6 +35,22 @@ public class RecipeInfo {
 
 
 
+
+	public String getFoodImage() {
+		return foodImage;
+	}
+
+	public void setFoodImage(String foodImage) {
+		this.foodImage = foodImage;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	public String getNoPhotoChange() {
 		return noPhotoChange;

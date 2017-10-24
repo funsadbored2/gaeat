@@ -704,72 +704,45 @@ pageEncoding="UTF-8"%>
 								<div id="pager" class="active" align=center></div>
 						</div>
 					</div>
+					 <div>
+					  
+					  	<div style="margin-top:50px; margin-bottom: 50px; margin-left:30px; margin-right:30px;">
+				     		<h6 class="line-title">연관된 다른 레시피</h6> 
+				    	</div>
+						  
+						  <div class="container-fluid" style = "margin-left:5px; margin-right:5px;">
+						  	<div class="row">
+						  	<!-- 추천레시피 -->
+						  	<c:forEach items = "${relatedRecipeList}" var = "relatedlist">
+						  			<div class="col-md-4">
+										<div class="single-blog-item">
+											<div class="blog-thumnail" style = "vertical-align:middle">
+													<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${relatedlist.recipe_no }">
+														<img src="${relatedlist.foodImage}" class ="foodimage" alt="post img" style="height:178.5px; width:260.50px">
+													</a>
+											</div>
+											<hr/>
+											<div class="blog-content" style = "padding-top:0px;">
+												<h4>
+													<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${relatedlist.recipe_no }" style="font-size:15px; text-overflow:ellipsis; overflow: hidden;  width:200px; white-space: nowrap; display: inline-block;" >${relatedlist.recipeTitle}</a>
+														<h style="font-size:4px; color:green; margin-top:2px;">by </h>
+													<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${relatedlist.userNo}" style="font-size:10px; color:black;">${relatedlist.nickname }</a>
+												</h4>
+												<p style = "height:20px; overflow:hidden; text-overflow: ellipsis; width: 230px; padding-bottom:0;">${relatedlist.introduction}</p>
+											</div>
+											<span class="blog-date" style = "font-size:12px">좋아요 </span>
+										</div>
+									</div>
+								</c:forEach>
+								</div>
+							</div>
+						  </div>
 				</div>
 
 					  <br>
 					  <br>
 					  <br>
-					  <div>
-					  
-					  	<div style="margin-top:100px; margin-bottom: 80px; margin-left:30px; margin-right:30px;">
-				     		<h6 class="line-title">연관된 다른 레시피</h6> 
-				    	</div>
-						  
-						  	<!-- 추천레시피 -->
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="single-blog-item">
-												<div class="blog-thumnail">
-													<a href="${pageContext.request.contextPath}/user/readform"><img src="${pageContext.request.contextPath}/assets/img/2.png" class ="foodimage" alt="blog-img"></a>
-												</div>
-												<div class="blog-content">
-													<h4>
-														<a href="${pageContext.request.contextPath}/user/readform">제육볶음</a>
-														<h style="font-size:6px; color:green;">by </h>
-														<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${chef.chef_no }" style="font-size:12px; color:black;">Kim Tae Hee</a>
-													</h4>
-													<p>정말 맛있는 제육볶음 소개~</p>
-												</div>
-												<span class="blog-date">좋아요 99</span>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="single-blog-item">
-												<div class="blog-thumnail">
-													<a href="${pageContext.request.contextPath}/user/readform"><img src="${pageContext.request.contextPath}/assets/img/2.png" class ="foodimage" alt="blog-img"></a>
-												</div>
-												<div class="blog-content">
-													<h4>
-														<a href="${pageContext.request.contextPath}/user/readform">제육볶음</a>
-														<h style="font-size:6px; color:green;">by </h>
-														<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${chef.chef_no }" style="font-size:12px; color:black;">Kim Tae Hee</a>
-													</h4>
-													<p>정말 맛있는 제육볶음 소개~</p>
-												</div>
-												<span class="blog-date">좋아요 99</span>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="single-blog-item">
-												<div class="blog-thumnail">
-													<a href="${pageContext.request.contextPath}/user/readform"><img src="${pageContext.request.contextPath}/assets/img/2.png" class ="foodimage" alt="blog-img"></a>
-												</div>
-												<div class="blog-content">
-													<h4>
-														<a href="${pageContext.request.contextPath}/user/readform">제육볶음</a>
-														<h style="font-size:6px; color:green;">by </h>
-														<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${chef.chef_no }" style="font-size:12px; color:black;">Kim Tae Hee</a>
-													</h4>
-													<p>정말 맛있는 제육볶음 소개~</p>
-												</div>
-												<span class="blog-date">좋아요 99</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-						  </div>
+					 
 					  </div>
 					<br>
 					<br>

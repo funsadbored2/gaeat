@@ -1,5 +1,6 @@
 package com.project.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +14,7 @@ import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.RecipeContent;
+import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
 import com.project.vo.UserpageVo;
 
@@ -218,6 +220,20 @@ public class ReadformDao {
 
 	public List<RecipeContent> getRecipeContent(int recipe_no) {
 		return sqlSession.selectList("readform.getRecipeContent", recipe_no);
+	}
+
+	public List<RecipeInfo> getRelatedRecipe(int chef_no, int recipe_no) {
+		
+		System.out.println("연관 레시피 다오 들어옴!!");
+		
+		UserpageVo vo = new UserpageVo();
+		vo.setChef_no(chef_no);
+		vo.setRecipe_no(recipe_no);
+		
+		List<RecipeInfo> list = sqlSession.selectList("readform.getRelatedRecipe", vo);
+		
+		return list;
+		
 	}
 
 }

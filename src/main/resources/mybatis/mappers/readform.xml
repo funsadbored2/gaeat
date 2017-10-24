@@ -311,6 +311,7 @@
      		select oreder_no order_no, text_content, img_content
      		from content
      		where recipe_no = #{no}
+     		order by order_no asc
      	]]>
      </select>
     

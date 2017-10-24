@@ -453,27 +453,11 @@ ingreArray[0] = 1;
 var ingreAuto = new Array();
 var tagArray = new Array(); 
 
+//orderArray조정
+
+
 //자바 스크립트 시작 
 $(document).ready(function(){
-	
-	//orderArray조정
-	var orderNo = $("#orderIdentifier").val();
-
-	divNo = orderNo;
-	
-	for(var i = 1; i < orderNo; i++){
-		
-		orderArray[i] = i + 1;
-
-	}
-
-	var ingreOrderNo = $("#ingreIdentifier").val();
-
-	ingreNo = ingreOrderNo;
-
-	for(var i = 1; i < ingreOrderNo; i++){
-		ingreArray[i] = i + 1;
-	}
 	
 	$(document).on("keydown",".tagInsert",function (key) {
 		 
@@ -533,37 +517,65 @@ $(document).ready(function(){
 			 
 	})
 	
+	
+		 orderSetting();
+	
+		function orderSetting(){
+		
+			var orderNo = $("#orderIdentifier").val();
+	
+					console.log(orderNo);
+	
+					divNo = orderNo;
+	
+					console.log(divNo);
+	
+					for(var i = 1; i < orderNo; i++){
+						
+						orderArray[i] = i + 1;
+	
+					}
+	
+					var ingreOrderNo = $("#ingreIdentifier").val();
+	
+					ingreNo = ingreOrderNo;
+	
+					for(var i = 1; i < ingreOrderNo; i++){
+						ingreArray[i] = i + 1;
+					}
+			}
+	
 		///시작시 ingre1도 자동 완성 가능하도록 해주는 부분
 	
-			$.ajax({
+		$.ajax({
 
-				url : "${pageContext.request.contextPath}/enrollform/autoIngre",
-				type : "post",
-				//contentType : "",
-				//data : {},
+			url : "${pageContext.request.contextPath}/enrollform/autoIngre",
+			type : "post",
+			//contentType : "",
+			//data : {},
 
-				dataType : "json",
-				success : function(ingreList) {
+			dataType : "json",
+			success : function(ingreList) {
 
-					for (var i = 0; i < ingreList.length; i++) {
+				for (var i = 0; i < ingreList.length; i++) {
 
-						ingreAuto[i] = ingreList[i];
+					ingreAuto[i] = ingreList[i];
 
-					}
-					
-					console.log(ingreAuto);
-					
-					$("input[name = ingre_1").autocomplete({
-						source: ingreAuto
-					}); 
-					/*성공시 처리해야될 코드 작성*/
-				
-				},
-
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
 				}
-			});
+				
+				console.log(ingreAuto);
+				
+				$("input[name = ingre_1").autocomplete({
+					source: ingreAuto
+				}); 
+				/*성공시 처리해야될 코드 작성*/
+			
+			},
+
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 		
 	///////버튼 클릭해 요리순서 추가될 위치 지정해서 출력 함수로 보내버림
 	$(document).on("click",".orderAddBtn",function(){
@@ -841,10 +853,10 @@ $(document).ready(function(){
 	         str += "</div>";
 	         str += "<div class = 'foodInfo' style = 'margin-bottom:10px;'>";
 	         str += "   <div class = 'col-sm-3'>";
-	         str += "      <input type='text' class='form-control' name = '"+ ingre +"' style = 'margin-right:20px; float:left; background-color:#eff0f2;' placeholder='재료를 적어주세요' value = ''>";
+	         str += "      <input type='text' class='form-control' name = '"+ ingre +"' style = 'margin-right:20px; float:left; background-color:white;' placeholder='재료를 적어주세요' value = ''>";
 	         str += "   </div>";
 	         str += "   <div class = 'col-sm-3'>";
-	         str += "      <input type='text' class='form-control' name = '"+ amount +"' style = 'margin-right:20px; float:left; background-color:#eff0f2;' placeholder = '수량을 적어주세요' value = ''>";
+	         str += "      <input type='text' class='form-control' name = '"+ amount +"' style = 'margin-right:20px; float:left; background-color:white;' placeholder = '수량을 적어주세요' value = ''>";
 	         str += "   </div>  ";
 	         str += "	<div class = 'col-sm-3'>";
 	         str += "    <button class='btn addIngre' name = '"+ divName +"'style = 'background-color: #b6c98f; border:0px; color:white'>재료추가</button>"
@@ -867,6 +879,8 @@ $(document).ready(function(){
 			source: ingreAuto
 		}); 
 	}
+	
+	
 	
 	//insert
 	/////////////////////////////////////////////////////////

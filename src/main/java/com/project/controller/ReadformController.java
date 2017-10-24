@@ -149,7 +149,7 @@ public class ReadformController {
 
 		for (int i = 0; i < contentVoList.size(); i++) {
 
-			last_order_no = +1;
+			last_order_no = last_order_no + 1;
 
 			int order_no = contentVoList.get(i).getOrder_no();
 

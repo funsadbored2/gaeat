@@ -799,10 +799,10 @@ $(document).ready(function(){
 	         str += "</div>";
 	         str += "<div class = 'foodInfo' style = 'margin-bottom:10px;'>";
 	         str += "   <div class = 'col-sm-3'>";
-	         str += "      <input type='text' class='form-control' name = '"+ ingre +"' style = 'margin-right:20px; float:left; background-color:#eff0f2;' placeholder='재료를 적어주세요' value = ''>";
+	         str += "      <input type='text' class='form-control' name = '"+ ingre +"' style = 'margin-right:20px; float:left; background-color: white;;' placeholder='재료를 적어주세요' value = ''>";
 	         str += "   </div>";
 	         str += "   <div class = 'col-sm-3'>";
-	         str += "      <input type='text' class='form-control' name = '"+ amount +"' style = 'margin-right:20px; float:left; background-color:#eff0f2;' placeholder = '수량을 적어주세요' value = ''>";
+	         str += "      <input type='text' class='form-control' name = '"+ amount +"' style = 'margin-right:20px; float:left; background-color: white;;' placeholder = '수량을 적어주세요' value = ''>";
 	         str += "   </div>  ";
 	         str += "	<div class = 'col-sm-3'>";
 	         str += "    <button class='btn addIngre' name = '"+ divName +"'style = 'background-color: #b6c98f; border:0px; color:white'>재료추가</button>"

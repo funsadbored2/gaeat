@@ -21,7 +21,7 @@
 
 	<c:import url="/WEB-INF/views/includes/headNav.jsp"></c:import>
 
-	<div class="mainbody container">
+	<div class="mainbody container" style="margin-top:60px; padding-top:30px;">
 		<div class="row">
 
 			<div style="padding-top: 30px;"></div>

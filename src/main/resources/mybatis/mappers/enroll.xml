@@ -64,7 +64,7 @@
 		MERGE into material
 		using dual on (material_name = #{materialName})
 		when not matched then
-		insert(material_no, material_name) values(SEQUENCE_m.nextval,
+		insert(material_no, material_name) values(material_no_seq.nextval,
 		#{materialName})
 		]]>
 	</insert>

@@ -57,7 +57,7 @@ public class UserService {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));//확장자
 			String saveName = joinvo.getId()+"_"+"profile"+exName;//파일 저장이름 :아이디 +프로필
 			String filePath = saveDir + saveName;//패스 
-			String saveprofilename = "http://localhost:8088/gaeat01/upload/user/"+joinvo.getId()+"/"+saveName;
+			String saveprofilename = "http://localhost:8088/gaeat/upload/user/"+joinvo.getId()+"/"+saveName;
 			
 		try {
 			byte[] fileData = file.getBytes(); // 아직 메모리에 있음(fileoutputstream사용 필요)
@@ -133,7 +133,7 @@ public class UserService {
 		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));//확장자
 		String saveName = updatevo.getId()+"_"+"profile"+exName;//파일 저장이름 :아이디 +프로필
 		String filePath = saveDir + saveName;//패스 
-		String saveprofilename ="http://localhost:8088/gaeat01/upload/user/"+updatevo.getId()+"/"+saveName;
+		String saveprofilename ="http://localhost:8088/gaeat/upload/user/"+updatevo.getId()+"/"+saveName;
 			
 		try {
 			byte[] fileData = file.getBytes(); // 아직 메모리에 있음(fileoutputstream사용 필요)

@@ -12,6 +12,7 @@ import com.project.vo.ModifyContentVo;
 import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
+import com.project.vo.RecipeContent;
 import com.project.vo.ScrapVo;
 import com.project.vo.UserpageVo;
 

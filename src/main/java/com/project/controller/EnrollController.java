@@ -87,17 +87,30 @@ public class EnrollController {
 		
 		List<RecipeIngredients> listIngreVo = new ArrayList<RecipeIngredients>();
 		
-		System.out.println(ingredients);
-		System.out.println(amounts);
+		System.out.println("/////////////////////////////////////////////////////////////////////");
 		
 		for(int i = 0; i < ingredients.size(); i++) {
+			
 			RecipeIngredients ingreVo = new RecipeIngredients();
+			
 			ingreVo.setRecipeNo(recipeNo);
 			ingreVo.setMaterialName(ingredients.get(i));
 			ingreVo.setAmount(amounts.get(i));
+			
+			System.out.println("재료이름:"+ingreVo.getMaterialName());
+			
+			if(ingreVo.getMaterialName() == "") {
+				
+				System.out.println("빈데이터");
+				
+			} else {
+			
 			listIngreVo.add(ingreVo);
-			System.out.println(listIngreVo.toString());
+			
+			
+			}
 		}
+		System.out.println("최종적으로 서비스로 날아가는 값:"+listIngreVo.toString());
 		
 		enrollService.EnrollIngre(listIngreVo);
 		

@@ -12,6 +12,7 @@ import com.project.vo.ModifyContentVo;
 import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
+import com.project.vo.RecipeContent;
 import com.project.vo.ScrapVo;
 import com.project.vo.UserpageVo;
 
@@ -88,7 +89,7 @@ public class ReadformService {
    }
    
 
-	\//readform할시 작동
+	//readform할시 작동
    
    public DatVo insertVo(DatVo datVo) {
       

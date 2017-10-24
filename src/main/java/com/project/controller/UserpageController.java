@@ -28,16 +28,16 @@ public class UserpageController {
 	
 	@RequestMapping(value="/main")
 	public String getlist(@RequestParam("chef_no") int chef_no, 
-						  Model model, 
-						  HttpSession session) {
-		
+			  Model model, 
+			  HttpSession session) {
+
 		//유저 정보
 		UserpageVo chef = userpageService.getUser(chef_no);
 		model.addAttribute("chef", chef);
 		
-/*		SocialUserVo a = (SocialUserVo)session.getAttribute("authUser");
+		/*		SocialUserVo a = (SocialUserVo)session.getAttribute("authUser");
 		System.out.println("확인 "+a);
-
+		
 		int authUser = a.getChef_no();
 		
 		System.out.println(authUser);
@@ -70,11 +70,11 @@ public class UserpageController {
 		int followcheck = 3;
 		
 		for(int i = 0; i < followedList.size(); i++) {
-			UserpageVo testNo = followedList.get(i);
-			if(no == testNo.getChef_no()) {
-				followcheck = 1;
-				break;
-			}			
+		UserpageVo testNo = followedList.get(i);
+		if(no == testNo.getChef_no()) {
+			followcheck = 1;
+			break;
+		}			
 		}
 		
 		System.out.println(recipebookList);
@@ -84,35 +84,53 @@ public class UserpageController {
 		//구독 정보를 가져오기 위해 session이 구독중인 recipebooklist 가져와야 함
 		List<UserpageVo> authUserSubInfoList = userpageService.getSubNo(no);
 		
+		
+		if(authUserSubInfoList.isEmpty()) {
+		
+		System.out.println("if문 들어옴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
 		for(int i = 0; i < recipebookList.size(); i++) {
-			
-			int rNo = recipebookList.get(i).getRecipebook_no();
-			
-			for(int j = 0; j < authUserSubInfoList.size(); j++) {
-				
-				  System.out.println(i +", "+j);
-				
-				  int sNo = authUserSubInfoList.get(j).getRecipebook_no();
-				  
-				  if(rNo == sNo) {
-					  recipebookList.get(i).setSubCheck(1);
-					  break;
-				  } else if(rNo != sNo) {
-					  recipebookList.get(i).setSubCheck(3);
-				  }
-			}
+			 recipebookList.get(i).setSubCheck(5);
+			 System.out.println(recipebookList.get(i).getSubCheck());
 		}
 		
-		System.out.println("recipebookList 출력 +++++++++++++++++++++++++++++++++++++ " + recipebookList);
-		System.out.println("authUserSubInfoList출력///////////////////////////////////////////////////////"+ authUserSubInfoList);
+		} else {
+		System.out.println("else문 들어옴 !!!!!!!!!!!!!!!!!!!!!!!!!");
+					
+					for(int i = 0; i < recipebookList.size(); i++) {
+						
+						System.out.println("for문 들어옴 !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+						
+						int rNo = recipebookList.get(i).getRecipebook_no();
+						
+						System.out.println("rNo의 값은 ????????????" + rNo);
+						
+							for(int j = 0; j < authUserSubInfoList.size(); j++) {
+								
+								  System.out.println(i +", "+j);
+								  int sNo = authUserSubInfoList.get(j).getRecipebook_no();
+								  
+								  System.out.println("sNo의 값은 ??????????????????" + sNo );
+								  
+								  if(rNo == sNo) {
+									  recipebookList.get(i).setSubCheck(1);
+									  System.out.println(recipebookList.get(i).getSubCheck());
+									  break;
+								  } else if(rNo != sNo) {
+									  recipebookList.get(i).setSubCheck(3);
+									  System.out.println(recipebookList.get(i).getSubCheck());
+								  } 
+							}
+					}
+		}
+		
+		System.out.println("recipebookList 출력    " + recipebookList.toString());
+		
 		model.addAttribute("recipebookList", recipebookList);
-		
 		model.addAttribute("authUserSubInfoList", authUserSubInfoList);
-		
 		
 		System.out.println(authUserSubInfoList);
 		return "/user/userpage";
-	}
+		}
 	
 	/*유저의 팔로우드리스트*/
 	@RequestMapping(value="/followedlist")

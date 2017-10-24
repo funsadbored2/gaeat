@@ -312,22 +312,21 @@
 								<a href="#" style="color:black;"><strong>${blist.recipebook_name }</strong></a> 
 								&nbsp;
 								
-							<c:choose>
+						<c:choose>
 								<c:when test= "${authUser.chef_no == null }">
-									<a></a>
 								</c:when>
 								<c:when test = "${authUser.chef_no == blist.chef_no}">
-									<a></a>
 								</c:when>
 								<c:when test = "${authUser.chef_no != blist.chef_no}">
-										<c:choose>
-											<c:when test = "${blist.subCheck eq  1}">
+											<c:if test = "${blist.subCheck ==  1}">
 												<a class="btn btn-xs btn-default subscribRemove" name = "${blist.recipebook_no}">구독중</a>
-											</c:when>
-											<c:when test = "${blist.subCheck eq  3}">
+											</c:if>
+											<c:if test = "${blist.subCheck ==  3}">
 												<a class="btn btn-xs btn-default subscription" name = "${blist.recipebook_no}">구독하기</a>
-											</c:when>
-										</c:choose>
+											</c:if>
+											<c:if test = "${blist.subCheck ==  5}">
+												<a class="btn btn-xs btn-default subscription" name = "${blist.recipebook_no}">구독하기</a>
+											</c:if>
 								</c:when>
 							</c:choose>
 							
@@ -338,7 +337,7 @@
 							<hr>
 	
 								<!-- 갤러리 -->
-								<div class="container-fluid" >
+								<div class="container-fluid">
 									<div class="row">
 										<c:forEach items="${recipeList }" var="list">
 											<c:if test ="${blist.recipebook_no  == list.recipebook_no }">
@@ -348,13 +347,13 @@
 																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }"><img src="${list.food_img }" class ="foodimage" alt="post img" style="height:178.5px; width:239.83px"></a>
 														</div>
 														<hr/>
-														<div class="blog-content">
+														<div class="blog-content" style = "padding-top:0px;">
 															<h4>
-																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }" style="font-size:16px" >${list.recipe_title }</a>
-																	<h style="font-size:4px; color:green;">by </h>
+																<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${list.recipe_no }" style="font-size:15px; text-overflow:ellipsis; overflow: hidden;  width:200px; white-space: nowrap; display: inline-block;" >${list.recipe_title }</a>
+																	<h style="font-size:4px; color:green; margin-top:2px;">by </h>
 																<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${chef.chef_no }" style="font-size:10px; color:black;">${list.nickname }</a>
 															</h4>
-															<p style = "height:20px; overflow:hidden">${list.introduction }</p>
+															<p style = "height:20px; overflow:hidden; text-overflow: ellipsis; width: 230px; padding-bottom:0;">${list.introduction }</p>
 														</div>
 														<span class="blog-date" style = "font-size:12px">좋아요 ${list.like_count }</span>
 													</div>

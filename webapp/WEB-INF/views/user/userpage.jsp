@@ -277,7 +277,7 @@
 								
 								<c:forEach items="${recipebookList }" var="list">
 									<tr>
-										<a style="font-size:11px; color:black; text-decoration:none">${list.recipebook_name }</a>
+										<p style="font-size:11px; color:black; text-decoration:none">${list.recipebook_name }</p>
 										<br>
 									</tr>
 								</c:forEach>

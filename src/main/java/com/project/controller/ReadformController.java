@@ -47,7 +47,7 @@ public class ReadformController {
    
       //요리 순서글
       List<ReadformVo> list = readformService.getlist(readformVo);
-     System.out.println(readformVo2.toString()+"###############################"); 
+      System.out.println(readformVo2.toString()+"###############################"); 
       //레시피 제목,소개글,조리난이도,조리시간 왼쪽에 표시할 셰프 정보
       readformVo2=readformService.getread(readformVo2);
       //레시피 주인의 팔로우 정보 가져오기
@@ -82,6 +82,8 @@ public class ReadformController {
       model.addAttribute("followcheck", followcheck);
       //카테고리 리스트
       List<UserpageVo> recipebookList = readformService.getRecipebookList(readformVo2.getChef_no());
+      
+      System.out.println("레시피북 리스트입니다 !!!!!!!!!!!!!!!!" + recipebookList);
       
       /*List<UserpageVo> followedList = userpageService.getFollowedList(chef_no);*/
       /*model.addAttribute("followedList", followedList);*/

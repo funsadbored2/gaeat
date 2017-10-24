@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="readform">
+
 <resultMap id="resultMapList" type="com.project.vo.UserpageVo">
          <result column = "chef_no" property="chef_no" />
          <result column = "name" property="name" />
@@ -77,15 +78,9 @@
    
    <select id="getRecipebookList" parameterType = "int" resultType="com.project.vo.UserpageVo">
       <![CDATA[
-         SELECT r.recipebook_no, r.recipebook_name,
-              (select count(*) from SUBSCRIPTION_HISTORY where r.recipebook_no= s.recipebook_no) as subscription_count
-         FROM chef c
-         JOIN subscription_history s
-         ON c.chef_no = s.chef_no
-         JOIN recipebook r
-         ON r.recipebook_no = s.recipebook_no
-         WHERE c.chef_no = #{chef_no}
-         order by s.reg_date desc 
+         SELECT recipebook_no, recipebook_name
+         FROM recipebook
+         WHERE chef_no = #{chef_no}
       ]]>
    </select>
      

@@ -44,11 +44,11 @@ pageEncoding="UTF-8"%>
 								<br>
 								
 								
-								<a href = "${pageContext.request.contextPath }/userpage/followinglist?chef_no=${readformVo2.chef_no }" style="font-size:13px; color:green;" style = "float:left">팔로우</a>
-								<a class = "followingNo" href="${pageContext.request.contextPath }/userpage/followinglist?chef_no=${readformVo2.chef_no }" style="font-size:13px; color:green;" value = "${chef.following_count }">${chef.following_count }</a>
+								<a href = "${pageContext.request.contextPath }/userpage/followinglist?chef_no=${chef.chef_no }" style="font-size:13px; color:green;" style = "float:left">팔로우</a>
+								<a class = "followingNo" href="${pageContext.request.contextPath }/userpage/followinglist?chef_no=${chef.chef_no }" style="font-size:13px; color:green;" value = "${chef.following_count }">${chef.following_count }</a>
 								<br>
-								<a href = "${pageContext.request.contextPath }/userpage/followedlist?chef_no=${readformVo2.chef_no }" style="font-size:13px; color:green;" style = "float:left">팔로워</a>
-								<a class = "followerNo" href="${pageContext.request.contextPath }/userpage/followedlist?chef_no=${readformVo2.chef_no }" style="font-size:13px; color:green;" value = "${chef.followed_count }">${chef.followed_count }</a>
+								<a href = "${pageContext.request.contextPath }/userpage/followedlist?chef_no=${chef.chef_no }" style="font-size:13px; color:green;" style = "float:left">팔로워</a>
+								<a class = "followerNo" href="${pageContext.request.contextPath }/userpage/followedlist?chef_no=${chef.chef_no }" style="font-size:13px; color:green;" value = "${chef.followed_count }">${chef.followed_count }</a>
 								<br>
 								<br>
 								<br>
@@ -210,9 +210,9 @@ pageEncoding="UTF-8"%>
 								
 								<br>
 								<br>
-								<p style="font-size:12px; color:gray;">${readformVo2.self_intro }</p>
+								<p style="font-size:12px; color:gray;">${chef.self_intro }</p>
 								<hr>
-								<a href="${pageContext.request.contextPath }/userpage/scraplist?chef_no=${readformVo2.chef_no }" style="font-size:12px; color:black;">스크랩한 글 모아보기</a>
+								<a href="${pageContext.request.contextPath }/userpage/scraplist?chef_no=${chef.chef_no }" style="font-size:12px; color:black;">스크랩한 글 모아보기</a>
 								<hr>
 								<h5>
 									<strong>카테고리</strong>
@@ -228,7 +228,7 @@ pageEncoding="UTF-8"%>
 								
 								<c:forEach items="${recipebookList }" var="recipebookList">
 									<tr>
-										<p style="font-size:11px; color:black;">${recipebookList.recipebook_name }</p>
+										<p style="font-size:11px; color:black; text-decoration:none">${recipebookList.recipebook_name }</p>
 										<br>
 									</tr>
 								</c:forEach>

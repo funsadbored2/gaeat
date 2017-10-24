@@ -128,7 +128,9 @@ public class ReadformDao {
     }
     
     public List<ModifyContentVo> modifyContent(int no) {
- 	   
+
+	    
+	    
        List<ModifyContentVo> modifyVoList = sqlSession.selectList("readform.modifyContent", no);
  	   
  	  return modifyVoList;
@@ -199,4 +201,14 @@ public class ReadformDao {
 	   return  sqlSession.delete("readform.dellike", vo);
 	    
 	   }
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//
+	//////////////////////////////////////////////////////////////////////////
+	public SocialUserVo mobilelogin(SocialUserVo user) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("login.selectUser1", user);
+	}
+
 }

@@ -331,7 +331,12 @@
 							</c:choose>
 							
 								<div style="text-align:right">
-									<h style="font-size:12px; color:green;">${blist.subscription_count }명이 구독 중 입니다.</h>
+									<c:if test = "${blist.subscription_count == 0}">
+										<h style="font-size:12px; color:green;">0 명이 구독 중 입니다.</h>
+									</c:if>
+									<c:if test = "${blist.subscription_count != 0}">
+										<h style="font-size:12px; color:green;">${blist.subscription_count}명이 구독 중 입니다.</h>
+									</c:if>
 								</div>
 							</h4>
 							<hr>

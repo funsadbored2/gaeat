@@ -32,6 +32,15 @@
 		]]>
 	</select>
 	
+	
+	<select id = "getSubscriptionCount" parameterType = "int" resultType = "int">
+		<![CDATA[
+			select COUNT(*) as subNo from SUBSCRIPTION_HISTORY
+			where recipebook_no = #{no}
+		]]>
+	</select>
+	
+	
 	<select id="getRecipeList" resultType="com.project.vo.UserpageVo">
 		<![CDATA[
 			select r.recipe_no, r.introduction, r.recipe_title, r.chef_no, c.nickname, r.reg_date, r.recipebook_no, food_img,

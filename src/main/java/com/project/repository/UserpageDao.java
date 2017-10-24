@@ -23,7 +23,24 @@ public class UserpageDao {
 	}
 	
 	public List<UserpageVo> getRecipebookList(int chef_no) {
-		return sqlSession.selectList("userpage.getRecipebookList", chef_no);
+		
+		List<UserpageVo> recipebookList = sqlSession.selectList("userpage.getRecipebookList", chef_no);
+		
+		
+		for(int i = 0; i < recipebookList.size(); i++) {
+			
+			int no = recipebookList.get(i).getRecipebook_no();
+			
+			System.out.println("subno + " +no);
+			
+			int subNo = sqlSession.selectOne("userpage.getSubscriptionCount", no);
+			
+			recipebookList.get(i).setSubscription_count(subNo);
+		
+			System.out.println("카운트 됐을까 ?//////////////////////////////////////////////" + recipebookList.get(i).getSubscription_count());
+		}
+
+		return recipebookList;
 	}
 	
 	public List<UserpageVo> getRecipeList(int chef_no) {

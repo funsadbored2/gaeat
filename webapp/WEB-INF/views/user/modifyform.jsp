@@ -256,7 +256,7 @@ function broseMainFile(){
 
          <hr style = "border: solid 0.5px #528540; margin-bottom: 50px;">
          
-         <div class="form-group">
+        <%--  <div class="form-group">
             <label for="category" class="col-sm-2 control-label" style="font-size:15px;">세부사항</label>
 			<div class = "col-sm-3" style = "floar:left;"> 
                <select  style="background-color: white;"
@@ -338,7 +338,7 @@ function broseMainFile(){
                </select>
             </div>
          </div>
-         
+          --%>
 
          <!-- 재료와 양 입력 -->
          

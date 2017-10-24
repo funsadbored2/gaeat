@@ -37,16 +37,16 @@
          <!--   캐러셀 items -->
            <div class="carousel-inner">
               <div class="item active"  align="center">
-                 <img src="${pageContext.request.contextPath}/assets/img/carousel/food1.jpg" alt="First slide">
+                 <img src="${pageContext.request.contextPath}/assets/img/carousel/c_back.png" alt="First slide">
               </div>
               <div class="item"  align="center">
-              	<video src="${pageContext.request.contextPath}/assets/video/videoex.mp4" autoplay></video>
+                 <img src="${pageContext.request.contextPath}/assets/img/carousel/ca_back.png" alt="second slide">               
               </div>
               <div class="item"  align="center">
-                 <img src="${pageContext.request.contextPath}/assets/img/carousel/food3.jpg" alt="Third slide">               
+                 <img src="${pageContext.request.contextPath}/assets/img/carousel/food1.jpg" alt="Third slide">               
               </div>
-              <div class="item"  align="center">
-                 <img src="${pageContext.request.contextPath}/assets/img/carousel/food4.jpg" alt="Fourth slide">               
+              <div class="item"  align="center" style="background-color:black;">
+              	<video src="${pageContext.request.contextPath}/assets/video/main_video.mp4" loop autoplay></video>
               </div>
            </div>
            

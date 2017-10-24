@@ -114,6 +114,7 @@ public class SearchController {
 					kvo.setCheck_login(0);
 				}
 				List<RecipeVo> list = searchservice.getListOnlyMf(kvo);
+				System.out.println("최종 리스트 목록" + list.toString());
 				return list;
 
 			} else {
@@ -132,6 +133,7 @@ public class SearchController {
 					f_list.add(Integer.parseInt(current));
 				}
 				List<RecipeVo> list = searchservice.getListF(kvo, f_list);
+				System.out.println("최종 리스트 목록" + list.toString());
 				return list;
 			}
 		}

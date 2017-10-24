@@ -226,18 +226,18 @@
 		</if>
 		<!--검색키워드들로 검색 전체를 키워드가 -->
 		<!--비교대상 : 요리명, 레시피제목, 닉네임, 요리책 -->
+		<!--
 		<if test="p_word_check == 1">
-			or
-			<foreach collection="p_word" item="item" index="index" open="("
+			<foreach collection="p_word" item="item" index="index" open="and ("
 				close=")" separator="or">
 				r.recipe_title like '%'||#{item}||'%'
 			</foreach>
-			or
-			<foreach collection="p_word" item="item" index="index" open="("
+			<foreach collection="p_word" item="item" index="index" open="and ("
 				close=")" separator="or">
 				rb.recipebook_name like '%'||#{item}||'%'
 			</foreach>
-		</if>
+		</if> 
+		 -->
 		<choose>
 			<when test="orderOption != '요리명'">
 				order by r.food_name desc, r.recipe_no

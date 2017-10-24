@@ -203,12 +203,20 @@ public class ReadformDao {
 	   }
 	
 	
+	
 	//////////////////////////////////////////////////////////////////////////
 	//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//
 	//////////////////////////////////////////////////////////////////////////
-	public SocialUserVo mobilelogin(SocialUserVo user) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("login.selectUser1", user);
+	public ReadformVo getRecipeInfo(int recipe_no) {
+		return sqlSession.selectOne("readform.getRecipeInfo", recipe_no);
+	}
+
+	public String getRecipeMaterial(int recipe_no) {
+		return sqlSession.selectOne("readform.getRecipeMaterial", recipe_no);
+	}
+
+	public List<RecipeContent> getRecipeContent(int recipe_no) {
+		return sqlSession.selectList("readform.getRecipeContent", recipe_no);
 	}
 
 }

@@ -118,6 +118,15 @@ public class UserDao {
 						
 							return a;
 						}
+	
+	//////////////////////////////////////////////////////////////////////////
+	//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//
+	//////////////////////////////////////////////////////////////////////////
+	public SocialUserVo mobilelogin(SocialUserVo user) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("login.selectUser1", user);
+	}
+
 				
 				
 	}

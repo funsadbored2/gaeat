@@ -617,6 +617,87 @@
 			select r.recipe_no, r.introduction, r.food_img, r.recipe_title, r.chef_no, c.nickname,
 				   r.food_name, r.reg_date, r.cooking_level, r.cooking_time, r.recipebook_no,
 				   r.cooking_method, r.cooking_type, r.food_img, (
+
+		    select count(*) from LIKE_HISTORY where r.recipe_no=LIKE_HISTORY.recipe_no) as like_count
+			from recipe r, chef c, recipebook rb
+			where c.chef_no = r.chef_no and r.recipebook_no = rb.recipebook_no and 1=1
+		]]>
+		<if test="type != '종류별'"><!-- 요리바 -->
+			and cooking_type = #{type, jdbcType=VARCHAR}
+		</if>
+
+		<if test="method != '방법별'">
+			and cooking_method = #{method, jdbcType=VARCHAR}
+		</if>
+
+		<if test="level != '난이도'">
+			and cooking_level = #{level, jdbcType=VARCHAR}
+		</if>
+
+		<if test="time != '조리시간'">
+			and cooking_time = #{time, jdbcType=VARCHAR}
+		</if>
+		<if test="f_list_check == 1"> <!-- -검색어+사전에 입력한 데이터롤 필터된 레시피 목록 -->
+			and recipe_no in
+			<foreach collection="f_list" item="item" open="(" close=")"
+				separator=",">
+				#{item}
+			</foreach>
+		</if>
+		<if test="p_word_check == 1">
+			or r.recipe_title like '%'||#{word}||'%'
+		</if>
+		<choose>
+			<when test="orderOption != '요리명'">
+				order by r.food_name desc, r.recipe_no
+			</when>
+			<when test="orderOption != '제목순'">
+				order by r.recipe_title desc, r.recipe_no
+			</when>
+			<when test="orderOption != '인기순'">
+				order by like_count desc, r.recipe_no
+			</when>
+			<when test="orderOption != '작성자순'">
+				order by r.chef_no desc, r.recipe_no
+			</when>
+			<when test="orderOption != '최신순'">
+				order by r.reg_date desc, r.recipe_no
+			</when>
+			<otherwise>
+				order by r.food_name desc, r.recipe_no
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 요리명의 레시피들 반환 -->
+	<select id="mobileSearchN" parameterType="String" resultType="String">
+		<![CDATA[
+			select listagg(recipe_no, ',') within group(order by recipe_no) reipce_no
+			from recipe
+			where food_name like '%'||#{word}||'%'
+		]]>
+	</select>
+
+
+	<!-- 특정 재료의 레시피들 반환 -->
+	<select id="mobileSearchM" parameterType="String" resultType="String">
+		<![CDATA[
+			select listagg(r.recipe_no, ',') within group(order by r.recipe_no) reipce
+			from recipe r, MATERIAL_HISTORY mh, MATERIAL m
+			where mh.recipe_no=r.recipe_no and 
+     			  m.MATERIAL_NO = mh.MATERIAL_NO and 
+      			  m.MATERIAL_NAME in #{word}
+		]]>
+	</select>
+
+
+	<!--//로그인유무에 상관없이 +검색어가 존재할 경우 -->
+	<select id="mobileSearch" parameterType="com.project.vo.keywordVo"
+		resultType="com.project.vo.RecipeVo">
+		<![CDATA[
+			select r.recipe_no, r.introduction, r.food_img, r.recipe_title, r.chef_no, c.nickname,
+				   r.food_name, r.reg_date, r.cooking_level, r.cooking_time, r.recipebook_no,
+				   r.cooking_method, r.cooking_type, r.food_img, (
                     select count(*) from LIKE_HISTORY where r.recipe_no=LIKE_HISTORY.recipe_no) as like_count
 			from recipe r, chef c, recipebook rb
 			where c.chef_no = r.chef_no and r.recipebook_no = rb.recipebook_no and 1=1
@@ -668,4 +749,56 @@
 		</choose>
 	</select>
 
+	<select id="getTopTag2" resultType="com.project.vo.TagVo">
+		<![CDATA[
+		select rn, tag_no, tag_name, tag_count
+		from( select rownum rn, tag_no, tag_name, tag_count
+    		  from ( select DISTINCT th.tag_no as tag_no, t.tag_name as tag_name,
+    		  				 (select count(*) from tag_HISTORY
+    		  				  where t.tag_no=tag_HISTORY.tag_no) as tag_count
+					  from tag t, tag_history th
+					  where t.tag_no = th.tag_no and 
+					  		th.reg_date <=sysdate and th.REG_DATE >= add_months(sysdate,-5)
+					  order by tag_count desc))
+		where rn<4
+		]]>
+	</select>
+
+
+	<select id="getTopRecipe" resultType="com.project.vo.RecipeVo">
+		<![CDATA[
+		select rn, recipe_no, introduction, food_img, recipe_title, chef_no, nickname,
+             food_name, reg_date, cooking_level, cooking_time, recipebook_no,
+             cooking_method, cooking_type, like_count
+		from( select rownum rn, recipe_no, introduction, food_img, recipe_title, chef_no, nickname,
+            		 food_name, reg_date, cooking_level, cooking_time, recipebook_no,
+             		 cooking_method, cooking_type, like_count
+      			from ( select r.recipe_no as recipe_no, r.introduction as introduction, r.food_img as food_img,
+                    r.recipe_title as recipe_title, r.chef_no as chef_no, c.nickname as nickname, 
+                    r.food_name as food_name, r.reg_date as reg_date, r.cooking_level as cooking_level,
+                    r.cooking_time as cooking_time, r.recipebook_no as recipebook_no, 
+                    r.cooking_method as cooking_method, r.cooking_type as cooking_type, (
+                    select count(*) from LIKE_HISTORY where r.recipe_no=LIKE_HISTORY.recipe_no) as like_count
+			 from recipe r, chef c, recipebook rb
+             where c.chef_no = r.chef_no and r.recipebook_no = rb.recipebook_no
+             order by like_count desc, r.recipe_no))
+where rn<4
+
+		]]>
+	</select>
+	<select id="mobileSearchTag" parameterType="String"
+		resultType="com.project.vo.RecipeVo">
+			<![CDATA[
+			select r.recipe_no, r.introduction, r.food_img, r.recipe_title, r.chef_no, c.nickname,
+				   r.food_name, r.reg_date, r.cooking_level, r.cooking_time, r.recipebook_no,
+				   r.cooking_method, r.cooking_type, r.food_img, (
+                    select count(*) from LIKE_HISTORY where r.recipe_no=LIKE_HISTORY.recipe_no) as like_count
+			from recipe r, chef c, recipebook rb, tag_history th, tag t
+			where c.chef_no = r.chef_no and r.recipebook_no = rb.recipebook_no and
+				  t.tag_no = th.tag_no and th.recipe_no = r.recipe_no and 
+				  t.tag_name =#{word} 
+			order by r.recipe_title desc, r.recipe_no
+		]]>
+
+	</select>
 </mapper>

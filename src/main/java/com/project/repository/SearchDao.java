@@ -145,11 +145,29 @@ public class SearchDao {
 	///////// 기타 ///////////
 	///////////////////////////////////////////////////////////////////////////////////
 
+	///////////////////////////////////////////////////////////////////////////////////
+	///////// 기타 ///////////
+	///////////////////////////////////////////////////////////////////////////////////
+
+	public  List<TagVo> getTopTag2() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("search2.getTopTag2");
+	}
+
+	public List<RecipeVo> mobileSearchTag(String word) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("search2.mobileSearchTag",word);
+	}
+
+	public List<RecipeVo> getTopRecipe() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("search2.getTopRecipe");
+	}
+	
 
 	public List<RecipeVo> mobileSearch(keywordVo kvo) {
 		return sqlSession.selectList("search2.mobileSearch", kvo);
 	}
-
 	public String mobileSearchM(String word) {
 		return sqlSession.selectOne("search2.mobileSearchM", word);
 	}
@@ -157,8 +175,6 @@ public class SearchDao {
 	public String mobileSearchN(String word) {
 		return sqlSession.selectOne("search2.mobileSearchN", word);
 	}
-
-
 
 	
 

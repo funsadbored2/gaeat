@@ -153,7 +153,7 @@ margin-top:10px;
 										
 										var chef_no = $(this).attr("name");
 										
-										str = "<a href='#' class='btn btn-xs btn-success following' name = '"+chef_no+"' style = 'background-color:#eef5ee;color:#689068;'><span class='glyphicon glyphicon-heart-empty following' style = ''></span> 팔로우하기</a>";
+										str = "<a href='#' class='btn btn-xs btn-success following' name = '"+chef_no+"' style = 'background-color:#eef5ee;color:#689068;'><span class='glyphicon glyphicon-heart-empty' style = ''></span> 팔로우하기</a>";
 										
 										$(this).replaceWith(str);
 										

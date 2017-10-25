@@ -55,9 +55,10 @@
 	<select id="getFollowedList" resultType="com.project.vo.UserpageVo">
 		<![CDATA[
 			select chef_no, nickname, self_intro, password, profile,
-					(select count(*) from follow_HISTORY where chef_no=follow_HISTORY.FOLLOWed_ID) as followed_count
+					(select count(*) from follow_HISTORY where chef_no=follow_HISTORY.FOLLOWed_ID) as followed_count,
+					(select count(*) from follow_HISTORY where follow_HISTORY.FOLLOWed_ID=chef_no and  follow_HISTORY.following_id=#{authUser_no}) as followedcheck2
 			from chef c, follow_history f
-			where f.followed_id = #{no}
+			where f.followed_id = #{follow_no}
 			and c.chef_no = f.following_id
 			order by f.reg_date desc
 		]]>
@@ -66,9 +67,10 @@
 	<select id="getFollowingList" resultType="com.project.vo.UserpageVo">
 		<![CDATA[
 			select c.chef_no, c.email, c.password, c.name, c.nickname, c.self_intro, f.reg_date, profile, f.follow_no,
-				   (select count(*) from follow_HISTORY where chef_no=follow_HISTORY.FOLLOWed_ID) as followed_count
+				   (select count(*) from follow_HISTORY where chef_no=follow_HISTORY.FOLLOWed_ID) as followed_count,
+				     (select count(*) from follow_HISTORY where follow_HISTORY.FOLLOWed_ID=chef_no and  follow_HISTORY.following_id=#{authUser_no}) as followingcheck2
 			from chef c, follow_history f
-			where f.following_id = #{no}
+			where f.following_id = #{follow_no}
 			and c.chef_no = f.followed_id
             order by f.reg_date desc
 		]]>

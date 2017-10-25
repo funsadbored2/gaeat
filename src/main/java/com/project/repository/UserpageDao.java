@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.FollowVo;
+import com.project.vo.FollowlistVo;
 import com.project.vo.RecipeBookListVo;
 import com.project.vo.SubscriptionVo;
 import com.project.vo.UserpageVo;
@@ -47,12 +48,12 @@ public class UserpageDao {
 		return sqlSession.selectList("userpage.getRecipeList", chef_no);
 	}
 	
-	public List<UserpageVo> getFollowedList(int chef_no) {
-		return sqlSession.selectList("userpage.getFollowedList", chef_no);
+	public List<UserpageVo> getFollowedList(FollowlistVo followervo) {
+		return sqlSession.selectList("userpage.getFollowedList", followervo);
 	}
 	
-	public List<UserpageVo> getFollowingList(int chef_no) {
-		return sqlSession.selectList("userpage.getFollowingList", chef_no);
+	public List<UserpageVo> getFollowingList(FollowlistVo followvo) {
+		return sqlSession.selectList("userpage.getFollowingList", followvo);
 	}
 	
 	public List<UserpageVo> getScrapList(int chef_no) {

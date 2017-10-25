@@ -14,6 +14,74 @@
 	<link href="${pageContext.request.contextPath}/assets/css/followerlist.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
+	
+<style type="text/css">
+
+.art-title a {
+ font-family:'squareRoundEB';
+     size: 20px;
+ margin-left:40px;
+}
+.counter-middle{
+ font-family:'squareRoundL';
+   font-size: 12px;
+}
+.counter-bottom{
+ font-family:'squareRoundL';
+   font-size: 20px;
+ margin-left:25px;
+}
+
+
+body {
+   margin: 20px;
+}
+
+#spacer {min-height:3em;}
+
+.box {
+    margin:auto; 
+    width: 80%; 
+}
+    
+.followintro {
+	
+    overflow: hidden;
+    position: relative;
+    line-height: 1em;
+    max-height: 2em;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    text-align: right;
+}
+          
+.followintro:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+          
+.followintro:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+}
+.badge-info{
+	margin-top:2px;
+}
+.followed,.following{
+margin-top:10px;
+ border-radius: 5px;
+}
+
+</style>	
+	
+	
 </head>
 
 
@@ -279,13 +347,54 @@
 					                        	<div class="art-title">
 					                            	<a href="${pageContext.request.contextPath}/userpage/main?chef_no=${followingList.chef_no}" style="font-size:12px; color:black;"><Strong>${followingList.nickname }</Strong></a>
 					                            	<br>
-					                            	<h style="font-size:10px; color:gray;">${followingList.self_intro }</h>
 					                            </div>
-					                            <div class="counter-tab">
-					                            	<span class="artst-like"><a href="${pageContext.request.contextPath}/userpage/followinglist?chef_no=${followingList.chef_no}"><i class="glyphicon glyphicon-heart-empty"></i>${followingList.followed_count }</a></span>
-					                            </div>
+					                         <div class="counter-middle ">
+						                          <div id="spacer">
+							                          <div class= "box">
+								                          <div class="followintro">
+								                          ${following.self_intro }
+								                          </div>
+							                            </div>
+						                          </div>
+					                          </div>  
+					                            
+					                             <div class="counter-bottom">
+					                           	<a href="${pageContext.request.contextPath}/userpage/followinglist?chef_no=${followingList.chef_no}">
+						                            <span class=" badge badge-info">followers : ${followingList.followed_count}</span>
+						                        </a>
+						                        <c:choose>
+						                        <c:when test="${authUser.chef_no==followingList.chef_no}">
+						                        
+						                        </c:when>
+						                        <c:otherwise>
+							                        <c:choose>
+													<c:when test = "${followingList.followingcheck2==1}">
+														<a href = "#" type = "button" class="followed btn btn-xs btn-success" style="border-radius:10px;" name = "${followingList.chef_no}"> 
+																<span class="glyphicon glyphicon-heart">
+																</span>팔로우 중
+															</a>
+													</c:when>
+													<c:otherwise>
+													<a href = "#" type = "button" class="following btn btn-xs btn-success"style="background-color:#eef5ee;color:#689068;border-radius:10px;" name = "${followingList.chef_no}">
+															<span class="glyphicon glyphicon-heart-empty">
+															</span> 팔로우하기
+														</a>
+													
+												
+													</c:otherwise>
+													</c:choose>
+						                        
+						                        </c:otherwise>
+						                        </c:choose>
+					                     		
+					                     
+					                     		
+					                           </div>
+					                            
+					                            
 					                        </div>
-					                    </div>
+					                        
+					                    </div><!-- artist-data pull-left" -->
 					                </div>
 					            </c:forEach>
 				            </div>

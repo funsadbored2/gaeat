@@ -15,6 +15,7 @@ import com.project.vo.ReadformVo;
 import com.project.vo.RecipeContent;
 import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
+import com.project.vo.Scrapcheck;
 import com.project.vo.UserpageVo;
 
 @Service
@@ -96,9 +97,9 @@ public class ReadformService {
 	}
 
 	// scrapcheck
-	public String scrapcheck(ReadformVo checvo) {
+	public String scrapcheck(Scrapcheck checvo) {
 
-		ReadformVo checkvo1 = readformDao.scrapcheck(checvo);
+		Scrapcheck checkvo1 = readformDao.scrapcheck(checvo);
 
 		if (checkvo1 == null) {
 			String a = "canuse";

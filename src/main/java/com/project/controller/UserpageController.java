@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.service.UserpageService;
 import com.project.vo.FollowVo;
+import com.project.vo.FollowlistVo;
 import com.project.vo.RecipeBookListVo;
 import com.project.vo.SocialUserVo;
 import com.project.vo.SubscriptionVo;
@@ -53,18 +54,24 @@ public class UserpageController {
 		List<UserpageVo> recipeList = userpageService.getRecipeList(chef_no);
 		model.addAttribute("recipeList", recipeList);
 		
-		//followed리스트
-		List<UserpageVo> followedList = userpageService.getFollowedList(chef_no);
-		model.addAttribute("followedList", followedList);
 		
-		System.out.println(followedList.toString());
-		
+	
 		//화면 보이고 안보이고 구분하기위한 세션 불러오기
 		SocialUserVo a = (SocialUserVo)session.getAttribute("authUser");
 		
 		int no = a.getChef_no();
 		
 		System.out.println(no);
+		
+		//followed리스트
+				FollowlistVo followervo =new FollowlistVo();
+				followervo.setAuthUser_no(a.getChef_no());
+				followervo.setFollow_no(chef_no);
+				
+				List<UserpageVo> followedList = userpageService.getFollowedList(followervo);
+				model.addAttribute("followedList", followedList);
+				
+				System.out.println(followedList.toString());
 		
 		//follow여부를 위해 followcheck값 계산
 		int followcheck = 3;
@@ -134,7 +141,9 @@ public class UserpageController {
 	
 	/*유저의 팔로우드리스트*/
 	@RequestMapping(value="/followedlist")
-	public String followedlist(@RequestParam("chef_no") int chef_no, Model model) {
+	public String followedlist(@RequestParam("chef_no") int chef_no, Model model,HttpSession session) {
+		SocialUserVo authUser = (SocialUserVo)session.getAttribute("authUser");
+		
 		//유저 정보
 		UserpageVo chef = userpageService.getUser(chef_no);
 		model.addAttribute("chef", chef);
@@ -144,7 +153,10 @@ public class UserpageController {
 		model.addAttribute("recipebookList", recipebookList);
 		
 		//팔로워 리스트
-		List<UserpageVo> followedList = userpageService.getFollowedList(chef_no);
+		FollowlistVo followervo =new FollowlistVo();
+		followervo.setAuthUser_no(authUser.getChef_no());
+		followervo.setFollow_no(chef_no);
+		List<UserpageVo> followedList = userpageService.getFollowedList(followervo);
 		model.addAttribute("followedList", followedList);
 		
 		return "user/followedlist";
@@ -152,7 +164,8 @@ public class UserpageController {
 	
 	/*유저의 팔로잉리스트*/
 	@RequestMapping(value="/followinglist")
-	public String followinglist(@RequestParam("chef_no") int chef_no, Model model) {
+	public String followinglist(@RequestParam("chef_no") int chef_no, Model model,HttpSession session) {
+		SocialUserVo authUser = (SocialUserVo)session.getAttribute("authUser");
 		//유저 정보
 		UserpageVo chef = userpageService.getUser(chef_no);
 		model.addAttribute("chef", chef);
@@ -162,7 +175,11 @@ public class UserpageController {
 		model.addAttribute("recipebookList", recipebookList);
 		
 		//팔로잉 리스트
-		List<UserpageVo> followingList = userpageService.getFollowingList(chef_no);
+		FollowlistVo followvo =new FollowlistVo();
+		followvo.setAuthUser_no(authUser.getChef_no());
+		followvo.setFollow_no(chef_no);
+		
+		List<UserpageVo> followingList = userpageService.getFollowingList(followvo);
 		model.addAttribute("followingList", followingList);
 		
 		System.out.println(followingList + "followingList///////////////////////////////////////////////////////////////////");

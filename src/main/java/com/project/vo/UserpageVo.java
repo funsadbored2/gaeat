@@ -23,6 +23,13 @@ public class UserpageVo {
 	private int follow_no;
 	private String reg_date;
 	private int subCheck;
+	private int followedcheck2;
+	private int followingcheck2;
+	
+	
+	
+	
+	
 	public UserpageVo() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -52,6 +59,21 @@ public class UserpageVo {
 	}
 	
 	
+	
+	
+	
+	public int getFollowedcheck2() {
+		return followedcheck2;
+	}
+	public void setFollowedcheck2(int followedcheck2) {
+		this.followedcheck2 = followedcheck2;
+	}
+	public int getFollowingcheck2() {
+		return followingcheck2;
+	}
+	public void setFollowingcheck2(int followingcheck2) {
+		this.followingcheck2 = followingcheck2;
+	}
 	public int getFollow_no() {
 		return follow_no;
 	}
@@ -183,19 +205,15 @@ public class UserpageVo {
 	public String toString() {
 		return "UserpageVo [chef_no=" + chef_no + ", recipe_no=" + recipe_no + ", name=" + name + ", nickname="
 				+ nickname + ", self_intro=" + self_intro + ", recipebook_name=" + recipebook_name + ", recipebook_no="
-				+ recipebook_no + ", recipe_title=" + recipe_title + ", introduction=" + introduction + ", like_count="
-				+ like_count + ", subscription_count=" + subscription_count + ", recipebook_count=" + recipebook_count
-				+ ", following_count=" + following_count + ", followed_count=" + followed_count + ", following_no="
-				+ following_no + ", followed_no=" + followed_no + ", reg_date=" + reg_date + ", getChef_no()="
-				+ getChef_no() + ", getRecipe_no()=" + getRecipe_no() + ", getName()=" + getName() + ", getNickname()="
-				+ getNickname() + ", getSelf_intro()=" + getSelf_intro() + ", getRecipebook_name()="
-				+ getRecipebook_name() + ", getRecipebook_no()=" + getRecipebook_no() + ", getRecipe_title()="
-				+ getRecipe_title() + ", getIntroduction()=" + getIntroduction() + ", getLike_count()="
-				+ getLike_count() + ", getSubscription_count()=" + getSubscription_count() + ", getRecipebook_count()="
-				+ getRecipebook_count() + ", getFollowing_count()=" + getFollowing_count() + ", getFollowed_count()="
-				+ getFollowed_count() + ", getFollowing_no()=" + getFollowing_no() + ", getFollowed_no()="
-				+ getFollowed_no() + ", getReg_date()=" + getReg_date() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+				+ recipebook_no + ", recipe_title=" + recipe_title + ", introduction=" + introduction + ", profile="
+				+ profile + ", like_count=" + like_count + ", food_img=" + food_img + ", subscription_count="
+				+ subscription_count + ", recipebook_count=" + recipebook_count + ", following_count=" + following_count
+				+ ", followed_count=" + followed_count + ", following_no=" + following_no + ", followed_no="
+				+ followed_no + ", follow_no=" + follow_no + ", reg_date=" + reg_date + ", subCheck=" + subCheck
+				+ ", followedcheck2=" + followedcheck2 + ", followingcheck2=" + followingcheck2 + "]";
 	}
+	
+	
+	
 	
 }

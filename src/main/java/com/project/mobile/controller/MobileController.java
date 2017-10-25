@@ -1,4 +1,4 @@
-package com.project.mobile.controller;
+/*package com.project.mobile.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -208,3 +208,4 @@ public class MobileController {
 	private class JSONResultTopRecipe extends JSONResult<List<RecipeVo>> {
 	}
 }
+*/

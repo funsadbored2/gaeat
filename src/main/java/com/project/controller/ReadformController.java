@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.service.ReadformService;
 import com.project.service.UserpageService;
 import com.project.vo.DatVo;
+import com.project.vo.FollowlistVo;
 import com.project.vo.LikeVo;
 import com.project.vo.ModifyContentVo;
 import com.project.vo.ModifyIngreVo;
@@ -24,6 +25,7 @@ import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
+import com.project.vo.Scrapcheck;
 import com.project.vo.SocialUserVo;
 import com.project.vo.UserpageVo;
 
@@ -57,9 +59,12 @@ public class ReadformController {
 		SocialUserVo authUser = (SocialUserVo) session.getAttribute("authUser");
 
 		// 레시피 작성자의 follow정보 가져오기
-		List<UserpageVo> followedList = userpageService.getFollowedList(readformVo2.getChef_no());
+		FollowlistVo followervo =new FollowlistVo();
+		followervo.setAuthUser_no(authUser.getChef_no());
+		followervo.setFollow_no(readformVo2.getChef_no());
+		List<UserpageVo> followedList = userpageService.getFollowedList(followervo);
 		model.addAttribute("followedList", followedList);
-
+		
 		// 팔로우 검사를 위한 변수 생성
 		int followcheck = 3;
 		if (authUser != null) {
@@ -91,15 +96,20 @@ public class ReadformController {
 		model2.addAttribute("readformVo2", readformVo2);
 		model2.addAttribute("list3", list3);
 
-		/*
-		 * Scrapcheck check =new Scrapcheck(); check.setChef_no(authUser.getChef_no());
-		 * check.setRecipe_no(readformVo2.getRecipe_no());
-		 */
+	
 		/* 스크랩 체크 */
-		readformVo2.setChef_no(authUser.getChef_no());
+	/*	readformVo2.setChef_no(authUser.getChef_no());
 		String check1 = readformService.scrapcheck(readformVo2);
 		model.addAttribute("check", check1);
-
+		
+*/
+		Scrapcheck check =new Scrapcheck();
+	    check.setChef_no(authUser.getChef_no());
+	    check.setRecipe_no(readformVo2.getRecipe_no());
+	    String  check1= readformService.scrapcheck(check);
+	    model.addAttribute("check", check1);
+	    
+	    
 		/* 좋아요 체크 */
 		LikeVo likecheck = new LikeVo();
 		likecheck.setRecipe_no(readformVo2.getRecipe_no());

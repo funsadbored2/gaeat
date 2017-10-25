@@ -1,6 +1,5 @@
 package com.project.repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +15,7 @@ import com.project.vo.ReadformVo;
 import com.project.vo.RecipeContent;
 import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
+import com.project.vo.Scrapcheck;
 import com.project.vo.UserpageVo;
 
 @Repository
@@ -162,10 +162,9 @@ public class ReadformDao {
       return sqlSession.selectList("readform.selectByno",datVo);
       
    }
-   public ReadformVo scrapcheck(ReadformVo checvo) {
+   public Scrapcheck scrapcheck(Scrapcheck checvo) {
 	      return sqlSession.selectOne("readform.scrapcheck",checvo);
-	      
-	   }
+   }
    //likecheck
    public String likecheck(LikeVo likcecheck) {
 	   System.out.println("likecheck3");

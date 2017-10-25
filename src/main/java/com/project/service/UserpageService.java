@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.repository.UserpageDao;
 import com.project.vo.FollowVo;
+import com.project.vo.FollowlistVo;
 import com.project.vo.RecipeBookListVo;
 import com.project.vo.SubscriptionVo;
 import com.project.vo.UserpageVo;
@@ -30,12 +31,12 @@ public class UserpageService {
 		return userpageDao.getRecipeList(chef_no);
 	}
 	
-	public List<UserpageVo> getFollowedList(int chef_no) {
-		return userpageDao.getFollowedList(chef_no);
+	public List<UserpageVo> getFollowedList(FollowlistVo followervo) {
+		return userpageDao.getFollowedList(followervo);
 	}
 	
-	public List<UserpageVo> getFollowingList(int chef_no) {
-		return userpageDao.getFollowingList(chef_no);
+	public List<UserpageVo> getFollowingList(FollowlistVo followvo) {
+		return userpageDao.getFollowingList(followvo);
 	}
 	
 	public List<UserpageVo> getScrapList(int chef_no) {

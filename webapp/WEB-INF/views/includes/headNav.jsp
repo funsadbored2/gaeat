@@ -898,7 +898,7 @@ clear: both
 			<script type="text/javascript">
 				function ab(){
 					$("#hatefoodlist").empty();
-					var chef_no = ${authUser.chef_no};
+					var chef_no = "${authUser.chef_no}";
 					console.log(chef_no);
 					$.ajax({
 								url : "${pageContext.request.contextPath }/user/seldislist",

@@ -19,6 +19,19 @@
 </head>
 
 <body id="page-top">
+<style>
+
+h2, h5, h4{
+ font-family:'squareRoundEB';
+}
+label, button, option, select, a, h2, h5, h4 {
+ font-family:'squareRoundL';
+}
+
+
+
+</style>	
+	
 	
 <c:import url="/WEB-INF/views/includes/headNav.jsp"></c:import>	
 	

@@ -395,9 +395,9 @@
       str += "</div>";
       str += "<div class=\"blog-content\">";
       str += "<h4>";
-      str += "<a href=\"#\" style=\"font-size:16px;\">" + recipeVo.recipe_title + "</a>";
+      str += "<a href=\"${pageContext.request.contextPath }/read/readform?recipe_no=" + recipeVo.recipe_no + "\" style=\"font-size:16px;\">" + recipeVo.recipe_title + "</a>";
       str += "<h style=\"font-size:4px; color:green;\">   by  </h>";
-      str += "<a href=\"#\" style=\"font-size:10px;\">"      + recipeVo.nickname + "</a>";
+      str += "<a href=\"${pageContext.request.contextPath }/userpage/main?chef_no=" + recipeVo.chef_no + "\" style=\"font-size:10px;\">"      + recipeVo.nickname + "</a>";
       str += "</h4>";
       str += "<div class = 'target'>";
       str += "<p>" + recipeVo.introduction + "</p>";

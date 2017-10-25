@@ -381,7 +381,7 @@ pageEncoding="UTF-8"%>
 						var userNo = ${authUser.chef_no};
 						var recipe_no = '${readformVo2.recipe_no }';
 						$("#scrap").empty();
-						var str = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>";
+						var str = "<a class='btn btn-xs btn-default scrapButton'  style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-bookmark'></span>  스크랩한레시피</a>";
 						
 						$(this).replaceWith(str);
 						
@@ -436,8 +436,8 @@ pageEncoding="UTF-8"%>
 							}
 						});
 					})
-					
-					
+					/* <button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>"
+					 */
 					$(".unlikeButton").on("click",function(){
 						var chef_no = ${authUser.chef_no};
 						var recipe_no = '${readformVo2.recipe_no }';
@@ -781,7 +781,7 @@ pageEncoding="UTF-8"%>
 												</h4>
 												<p style = "height:20px; overflow:hidden; text-overflow: ellipsis; width: 230px; padding-bottom:0;">${relatedlist.introduction}</p>
 											</div>
-											<span class="blog-date" style = "font-size:12px">좋아요 </span>
+											<span class="blog-date" style = "font-size:12px">좋아요 ${relatedlist.like_no}</span>
 										</div>
 									</div>
 								</c:forEach>

@@ -13,9 +13,9 @@ import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
 import com.project.vo.RecipeContent;
-import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
 import com.project.vo.UserpageVo;
+import com.project.vo.relatedRecipeVo;
 
 @Service
 public class ReadformService {
@@ -170,7 +170,7 @@ public class ReadformService {
 		return readformDao.getRecipeContent(recipe_no);
 	}
 
-	public List<RecipeInfo> getRelatedRecipe(int chef_no, int recipe_no) {
+	public List<relatedRecipeVo> getRelatedRecipe(int chef_no, int recipe_no) {
 		
 		return readformDao.getRelatedRecipe(chef_no, recipe_no);
 		

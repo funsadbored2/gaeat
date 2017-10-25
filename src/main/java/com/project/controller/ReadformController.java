@@ -23,11 +23,11 @@ import com.project.vo.ModifyContentVo;
 import com.project.vo.ModifyIngreVo;
 import com.project.vo.ModifyVo;
 import com.project.vo.ReadformVo;
-import com.project.vo.RecipeInfo;
 import com.project.vo.ScrapVo;
 import com.project.vo.Scrapcheck;
 import com.project.vo.SocialUserVo;
 import com.project.vo.UserpageVo;
+import com.project.vo.relatedRecipeVo;
 
 @Controller
 @RequestMapping("/read")
@@ -119,8 +119,8 @@ public class ReadformController {
 		model.addAttribute("likecheck", likecheck1);
 
 		/* 연관 레시피 */
-		List<RecipeInfo> relatedRecipeList = readformService.getRelatedRecipe(readformVo2.getChef_no(),
-				readformVo2.getRecipe_no());
+		List<relatedRecipeVo> relatedRecipeList = readformService.getRelatedRecipe(readformVo2.getChef_no(),
+																				   readformVo2.getRecipe_no());
 		model.addAttribute("relatedRecipeList", relatedRecipeList);
 		return "/user/readform";
 

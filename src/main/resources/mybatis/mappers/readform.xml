@@ -341,7 +341,7 @@
      ]]>
 	</select>
 	
-	<select id = "getRelatedRecipe" parameterType = "com.project.vo.UserpageVo" resultType = "com.project.vo.RecipeInfo">
+	<select id = "getRelatedRecipe" parameterType = "com.project.vo.UserpageVo" resultType = "com.project.vo.relatedRecipeVo">
 	<![CDATA[
 		select r.recipe_title recipeTitle, r.food_name foodName, c.nickname nickname, 
 			   r.introduction introduction, r.food_img foodImage,r.recipe_no recipe_no, c.chef_no userNo
@@ -351,6 +351,13 @@
         and r.chef_no = c.chef_no
         and r.recipe_no != #{recipe_no}
         order by r.reg_date desc
+	]]>
+	</select>
+	
+	<select id = "getRelatedRecipeLike" parameterType = "int" resultType = "int">
+	<![CDATA[
+		SELECT COUNT(*) as list_no FROM LIKE_HISTORY
+		WHERE RECIPE_NO = #{no}
 	]]>
 	</select>
 	

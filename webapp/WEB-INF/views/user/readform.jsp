@@ -777,8 +777,10 @@ pageEncoding="UTF-8"%>
 											<div class="blog-content" style = "padding-top:0px;">
 												<h4>
 													<a href="${pageContext.request.contextPath}/read/readform?recipe_no=${relatedlist.recipe_no }" style="font-size:15px; text-overflow:ellipsis; overflow: hidden;  width:200px; white-space: nowrap; display: inline-block;" >${relatedlist.recipeTitle}</a>
+														<div>
 														<h style="font-size:4px; color:green; margin-top:2px;">by </h>
 													<a href="${pageContext.request.contextPath }/userpage/main?chef_no=${relatedlist.userNo}" style="font-size:10px; color:black;">${relatedlist.nickname }</a>
+													</div>
 												</h4>
 												<p style = "height:20px; overflow:hidden; text-overflow: ellipsis; width: 230px; padding-bottom:0;">${relatedlist.introduction}</p>
 											</div>

@@ -8,16 +8,7 @@
 				from 
 		]]>
 	</select>
-	select rn, tag_no, tag_name, tag_count
-		from( select rownum rn, tag_no, tag_name, tag_count
-    		  from ( select DISTINCT th.tag_no as tag_no, t.tag_name as tag_name,
-    		  				 (select count(*) from tag_HISTORY
-    		  				  where t.tag_no=tag_HISTORY.tag_no) as tag_count
-					  from tag t, tag_history th
-					  where t.tag_no = th.tag_no and 
-					  		th.reg_date <=sysdate and th.REG_DATE >= add_months(sysdate,-5)
-					  order by tag_count desc))
-		where rn<7
+
 
 
 </mapper> 

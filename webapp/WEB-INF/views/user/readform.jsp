@@ -411,12 +411,12 @@ pageEncoding="UTF-8"%>
 					})
 					
 				
-					$(".likeButton").on("click",function(){
+					$(document).on("click",".likeButton",function(){
 						
 						var chef_no = ${authUser.chef_no};
 						var recipe_no = '${readformVo2.recipe_no }';
 						$("#likearea2").empty();
-						var str1 = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no}likebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>";
+						var str1 = "<a class='btn btn-xs btn-default unlikeButton' name = '"+recipe_no+"unlikebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </a>";
 						
 						$("#likearea2").append(str1);
 						var LikeVo = {
@@ -438,15 +438,14 @@ pageEncoding="UTF-8"%>
 							}
 						});
 					})
-					/* <button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }' style = 'float:right; margin-right:15px;'><span class='glyphicon glyphicon-book'></span> 좋아요 해제 </button>"
-					 */
-					$(".unlikeButton").on("click",function(){
+					
+					 $(document).on("click",".unlikeButton",function(){
 						var chef_no = ${authUser.chef_no};
 						var recipe_no = '${readformVo2.recipe_no }';
 						$("#likearea").empty();
-						var str2 = "<button class='btn btn-xs btn-default unlikeButton' name = '${readformVo2.recipe_no }likebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 </button>";
+						var str2 = "<a class='btn btn-xs btn-default likeButton' name = '"+recipe_no+"likebtn' style = 'float:right; margin-right:15px'><span class='glyphicon glyphicon-book'></span> 좋아요 </a>";
 						
-						$("#likearea").append(str2);
+						$(this).replaceWith(str2);
 						
 						var LikeVo = {
 								recipe_no:recipe_no,

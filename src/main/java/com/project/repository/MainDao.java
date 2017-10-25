@@ -10,9 +10,9 @@ public class MainDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int likeTop20() {
+	public int getLikeTop20() {
 		
-		
+		sqlSession.selectList("main.getTop20RecipeList");
 		
 		return 0;
 	}

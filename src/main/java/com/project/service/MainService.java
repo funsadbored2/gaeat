@@ -11,7 +11,9 @@ public class MainService {
 	@Autowired
 	private MainDao enrollDao;
 	
-	public int likeTop20() {
+	public int getLikeTop20() {
+		
+		enrollDao.getLikeTop20();
 		
 		return 0;
 	}

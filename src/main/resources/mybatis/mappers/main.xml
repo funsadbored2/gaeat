@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="main">
+<mapper namespace="mainpage">
 
-	<select id = "likeTop20" resultType = "com.project.vo.relatedRecipeVo">
+	<select id = "getTopRecipeNo" resultType = "com.project.vo.relatedRecipeVo">
 		<![CDATA[
-			select recipe_no 
-				from 
+			select recipe_no, rn
+        	from (select rownum rn, recipe_no, like_count
+            from (select DISTINCT l.recipe_no, (select count(*) from like_HISTORY
+                                        where r.recipe_no = like_history.recipe_no) as like_count
+                                        from recipe r, like_history l
+                                        where r.recipe_no = l.recipe_no
+                                        and r.reg_date <= sysdate and r.reg_date >= add_months(sysdate, -3)
+                                        order by like_count desc))
+            where rn < 6
 		]]>
 	</select>
-
-
+	
+	<select id = "getTopRecipeList" parameterType = "int" resultType = "com.project.vo.relatedRecipeVo">
+		<![CDATA[
+			select recipe_no recipe_no,r.recipe_title recipeTitle, r.chef_no userNo, c.nickname nickname, 
+				   r.introduction introduction, r.food_img foodImage
+			from recipe r, chef c
+			where r.chef_no = c.chef_no
+			and recipe_no = #{no}
+		]]>
+	</select>
 
 </mapper> 

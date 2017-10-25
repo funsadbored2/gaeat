@@ -3,6 +3,7 @@ package com.project.vo;
 public class relatedRecipeVo {
 
 	private int recipe_no;
+	private int rn;
 	private int userNo;
 	private String foodImage;
 	private String nickname;
@@ -10,6 +11,20 @@ public class relatedRecipeVo {
 	private String foodName;
 	private String introduction; 
 	private int like_no;
+	private String identity;
+	
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+	public String getIdentity() {
+		return identity;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
 	public int getRecipe_no() {
 		return recipe_no;
 	}

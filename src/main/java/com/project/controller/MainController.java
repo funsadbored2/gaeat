@@ -1,14 +1,18 @@
 package com.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.service.MainService;
 import com.project.vo.SocialUserVo;
+import com.project.vo.relatedRecipeVo;
 
 @Controller
 @RequestMapping(value = "/main")
@@ -19,9 +23,13 @@ public class MainController {
 	private MainService mainService;
 	
 	 @RequestMapping(value="/index", method = RequestMethod.GET)
-	   public String index() {
+	   public String index(Model model) {
 		 
-		 /* mainService.getLikeTop20();*/
+		  List<relatedRecipeVo> topList = mainService.getLikeTop20();
+		 
+		  System.out.println(topList);
+		  
+		  model.addAttribute("topList", topList);
 		  
 	      return "/main/index";
 	   

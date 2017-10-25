@@ -64,13 +64,13 @@
 											
 												<c:if test = "${followcheck == 1}">
 													
-													<a href = "#" type = "button" class="followed btn btn-xs btn-success" name = "${chef.chef_no}"> <span class="glyphicon glyphicon-heart"></span>팔로우 중</a>
+													<a href = "#" type = "button" class="followed btn btn-xs btn-success" name = "${chef.chef_no}" style = ""> <span class="glyphicon glyphicon-heart"></span>팔로우 중</a>
 													
 												</c:if>
 												
 												<c:if test = "${followcheck != 1}">
 													
-													<a href = "#" type = "button" class="following btn btn-xs btn-success" name = "${chef.chef_no}"><span class="glyphicon glyphicon-heart-empty"></span> 팔로우하기</a>
+													<a href = "#" type = "button" class="following btn btn-xs btn-success" name = "${chef.chef_no}" style = "background-color:#eef5ee;color:#689068;"><span class="glyphicon glyphicon-heart-empty"></span> 팔로우하기</a>
 												
 												</c:if>
 											
@@ -86,7 +86,7 @@
 										
 										var chef_no = $(this).attr("name");
 										
-										str = "<a href='#' class='btn btn-xs btn-success following' name = '"+chef_no+"'><span class='glyphicon glyphicon-heart-empty following'></span> 팔로우하기</a>";
+										str = "<a href='#' class='btn btn-xs btn-success following' name = '"+chef_no+"' style = 'background-color:#eef5ee;color:#689068;'><span class='glyphicon glyphicon-heart-empty following'></span> 팔로우하기</a>";
 										
 										$(this).replaceWith(str);
 										

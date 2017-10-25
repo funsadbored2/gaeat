@@ -9,5 +9,6 @@
 		<mapper resource="mybatis/mappers/readform.xml" />
 		<mapper resource="mybatis/mappers/enroll.xml" />
 		<mapper resource="mybatis/mappers/search2.xml" />
+		<mapper resource="mybatis/mappers/main.xml" />
 	</mappers>
 </configuration>

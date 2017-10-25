@@ -66,7 +66,7 @@
 		 <div class="work" style = "margin-bottom: 150px">
 		  <div class="category-buttons">
 		    <a href="#" class="active all" data-group="all">Top20</a>
-		    <a href="#" data-group="city">New20.</a>
+		    <a href="#" data-group="top">Top20</a>
 		    <a href="#" data-group="nature">favorite.</a>
 		    <a href="#" data-group="food">vegetarian.</a>
 		    <a href="#" data-group="sports">allergy.</a>
@@ -74,16 +74,19 @@
 		  </div>
 		
 		  <div id="grid" class="grid">
-		    <a class="card" href="#" data-groups="city,">
-		      <img src="${pageContext.request.contextPath}/assets/img/foodsample/1.jpg" />
+		  
+		  <c:forEach items = "${topList}" var = "topList">
+		    <a class="card" href="${pageContext.request.contextPath}/read/readform?recipe_no=${topList.recipe_no }" data-groups="${topList.identity}">
+		      <img src="${topList.foodImage }" />
 		      <div class="title">
-      			<h style="font-size:14px;"><Strong>바게트빵을 크림과!!</Strong> </h>
+      			<h style="font-size:14px;"><Strong>${topList.recipeTitle}</Strong> </h>
 				<h style="font-size:6px; color:green;">by </h>
-				<h style="font-size:12px;">Kim Tae Hee </h>
-				<p>남는 바게트빵은 이렇게 이용하시면 됩니다! 아주 맛이 있죱</p>	
+				<h style="font-size:12px;">${topList.nickname}</h>
+				<p>${topList.introduction}</p>	
 			  </div>
 		    </a>
-		    <a class="card" href="#" data-groups="nature,">
+		   </c:forEach>
+		  <%--   <a class="card" href="#" data-groups="nature,">
 		      <img src="${pageContext.request.contextPath}/assets/img/foodsample/2.jpg" />
 		      <div class="title">
       			<h style="font-size:14px;"><Strong>중국식 소고기 볶음</Strong> </h>
@@ -253,7 +256,7 @@
 				<h style="font-size:12px;">Kim Tae Hee </h>
 				<p>남는 바게트빵은 이렇게 이용하시면 됩니다! 아주 맛이 있죱</p>	
 			  </div>
-		    </a>
+		    </a> --%>
 		    <div class="guide"></div>
 		  </div>
 		</div>

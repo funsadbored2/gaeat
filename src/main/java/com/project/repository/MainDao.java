@@ -29,13 +29,13 @@ public class MainDao {
 			
 				relatedRecipeVo vo = list.get(i);
 				
-				vo.setIdentity("top");
+				vo.setIdentity("nature");
 				
 				System.out.println(vo);
 				
 				int no = vo.getRecipe_no();
 				
-				vo = sqlSession.selectOne("mainpage.getTopRecipeList", no);
+				vo = sqlSession.selectOne("mainpage.getRecipeList", no);
 				
 				System.out.println("나왔음!!!!!!!!1" + vo.toString());
 				
@@ -45,5 +45,36 @@ public class MainDao {
 		
 		return topList;
 	}
+	
+	public List<relatedRecipeVo> getVeganRecipe(){
+		
+    	System.out.println("veganRecipe");
+	
+	List<relatedRecipeVo> list = sqlSession.selectList("mainpage.getVeganRecipeNo");
+	
+	List<relatedRecipeVo> veganList = new ArrayList<relatedRecipeVo>();
+	
+	for(int i = 0; i < list.size(); i++) {
+		
+		relatedRecipeVo veganVo = list.get(i);
+		
+		System.out.println(veganVo);
+		
+		int no = veganVo.getRecipe_no();
+		
+		veganVo = sqlSession.selectOne("mainpage.getRecipeList", no);
+		
+		System.out.println("나왔음!!!!!!!!1" + veganVo.toString());
+		
+		veganVo.setIdentity("vegan");
+		
+		veganList.add(veganVo);
+		
+	}
+	
+	return veganList;
+	
+}
+
 	
 }

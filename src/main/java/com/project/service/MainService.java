@@ -18,4 +18,10 @@ public class MainService {
 		
 		return enrollDao.getLikeTop20();
 	}
+	
+	public List<relatedRecipeVo> getVeganRecipe(){
+		
+		return enrollDao.getVeganRecipe();
+				
+	}
 }

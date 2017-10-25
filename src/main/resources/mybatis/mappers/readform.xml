@@ -25,7 +25,7 @@
 
    </select>
    
-     <select id="scrapcheck" parameterType="com.project.vo.ReadformVo" resultType="com.project.vo.Scrapcheck">
+     <select id="scrapcheck" parameterType="com.project.vo.Scrapcheck" resultType="com.project.vo.Scrapcheck">
        <![CDATA[
        select crecipe_no from scrap_recipe where CHEF_NO=${chef_no} and RECIPE_NO=${recipe_no}
     ]]>

@@ -16,7 +16,7 @@
 		]]>
 	</select>
 	
-	<select id = "getTopRecipeList" parameterType = "int" resultType = "com.project.vo.relatedRecipeVo">
+	<select id = "getRecipeList" parameterType = "int" resultType = "com.project.vo.relatedRecipeVo">
 		<![CDATA[
 			select recipe_no recipe_no,r.recipe_title recipeTitle, r.chef_no userNo, c.nickname nickname, 
 				   r.introduction introduction, r.food_img foodImage
@@ -26,4 +26,26 @@
 		]]>
 	</select>
 
+	<select id = "getVeganRecipeNo" resultType = "com.project.vo.relatedRecipeVo">
+		<![CDATA[
+			select recipe_no
+				from(select DISTINCT recipe_no, reg_date
+				     from tag_history
+				     where tag_no = 14
+				     and rownum <= 20)
+			order by reg_date desc	
+		]]>
+	</select>
+	
+	<select id = "getMeatRecipeNo" resultType = "com.project.vo.relatedRecipeVo">
+		<![CDATA[
+			select recipe_no
+				from(select DISTINCT recipe_no, reg_date
+				     from tag_history
+				     where tag_no = 14
+				     and rownum <= 20)
+			order by reg_date desc	
+		]]>
+	</select>
+	
 </mapper> 

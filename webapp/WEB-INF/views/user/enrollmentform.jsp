@@ -28,7 +28,7 @@
     	</div>
 	</div> 
    
-   <div class="container" style = "background-color:#f0f0f0; margin-top:50px; margin-bottom:100px; padding-bottom:30px;" >
+   <div class="container" style = "background-color:#f0f0f0; margin-top:50px; margin-bottom:100px; padding-bottom:30px; padding-right:50px; padding-left:50px;" >
       <h2 style = "margin-top:50px; margin-left:30px">레시피 등록하기</h2>
       	<br>
       	
@@ -59,6 +59,14 @@
 	         </div>
          
 <style>
+
+h2{
+ font-family:'squareRoundEB';
+}
+label, button, option, select, a {
+ font-family:'squareRoundL';
+}
+
 
 .wrap-loading{ /*화면 전체를 어둡게 합니다.*/
 	position:absolute; 
@@ -255,7 +263,7 @@ function broseMainFile(){
 			</div>
 		</div>
 
-         <hr style = "border: solid 0.5px #528540; margin-bottom: 50px;">
+         <hr style = "border: solid 0.5px #528540; margin-bottom: 50px; margin-top:50px;">
          
          <div class="form-group">
             <label for="category" class="col-sm-2 control-label" style="font-size:15px;">세부사항</label>
@@ -365,7 +373,7 @@ function broseMainFile(){
 		<div class="div_1 form-group"
 				style="float: left; width: 1099px; margin-top: 10px; margin-bottom: 30px; margin-left:20px ">
 			<label class="col-sm-2 order_1" name="order_1"
-				style="border-right: 0.5px solid green; color: #528540; margin-top: 20px; font-weight: bold; font-size: 25px;">1 단계</label>
+				style="border-right: 0.5px solid green; color: #528540; margin-top: 20px; font-weight: bold; font-size: 30px;">1 단계</label>
 			<div class="promo-flex col-sm-8" style="margin-top: 10px; margin-bottom: 10px; ">
 		
 				<div data-ix="blog-card" class="promo-card" style="float: left">
@@ -631,7 +639,7 @@ $(document).ready(function(){
 		 var str = " ";
 		 
 		 str += " <div class='"+divName+ " form-group' style = 'float:left; width: 1099px; margin-top:10px; margin-bottom:30px; margin-left:20px;'>"
-	     str += "<label class='col-sm-2 "+ orderName +"' name = '"+ orderName +"' style = 'margin-left:60x; border-right:0.5px solid green; color:#528540; margin-top:20px;font-weight: bold; font-size: 25px; '>"
+	     str += "<label class='col-sm-2 "+ orderName +"' name = '"+ orderName +"' style = 'margin-left:60x; border-right:0.5px solid green; color:#528540; margin-top:20px;font-weight: bold; font-size: 30px; '>"
 	     str += "  	" + orderNo + " 단계"
 	     str += "     </label>"
 	     str += "            <div class='promo-flex col-sm-8' style = 'margin-top:10px; margin-bottom:10px;'>"
@@ -644,7 +652,7 @@ $(document).ready(function(){
 	     str += "    										resize:none;  border-top-right-radius:10px; border-bottom-right-radius:10px;font-size:15px;' "
 	     str += "					value = '';></textarea></div> </div>"
 	     str += "	   			 <div class='btn-group col-sm-2' style='padding-right:6px; padding-top: 15px;'>"
-	     str += "	                     <button class='orderAddBtn btn btn-success addOrder' name = '"+divName+ "' style = 'border:0; background-color: #b6c98f; color: white;'>단계 추가</button> "
+	     str += "	                     <button class='orderAddBtn btn btn-success addOrder' name = '"+divName+ "' style = 'float:left; border:0; background-color: #b6c98f; color: white; margin-right:10px;'>단계 추가</button> "
 	     str += "	                     <input id = '"+divName+"' type = 'text' name = '"+ orderName +"'  value = '"+ orderNo +"' style = 'display:none;'/>"
 	     str += "	                     <button class='orderRemoveBtn btn btn-danger addOrder' name = '"+divName+ "' style = 'float:bottom; border:0; background-color: #ed9a89; color: white; margin-top:10px'>단계 제거</button>" 
 		 str += "	             </div>"

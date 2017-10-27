@@ -205,6 +205,16 @@
 											
 												console.log("sub 추가 보내기 성공");
 												
+												var no =  $(".subnum").attr("name");
+												no = no * 1;
+												var subcountno = no + 1;
+												var str = "<h class = 'subnum' name = '"+ subcountno +"' style='font-size:12px; color:green;'>"+ subcountno +"</h>";
+												
+												
+												$(".subnum").replaceWith(str);
+												
+												
+												
 											}, 
 											error : function(XHR, status, error) {
 												console.error(status + " : " + error);
@@ -224,7 +234,7 @@
 										
 										console.log(authUserNo);
 										
-										var str = "<a class='btn btn-xs btn-default subscription' name = '"+subNo+"'>구독하기</a>"
+										var str = "<a class='btn btn-xs btn-default subscription' name = '"+subNo+" '>구독하기</a>"
 										
 										$(this).replaceWith(str);
 										
@@ -245,6 +255,17 @@
 											success : function() {
 											
 												console.log("sub 삭제 성공");
+												
+												var no =  $(".subnum").attr("name");
+												no = no * 1;
+												var subcountno = no - 1;
+												var str = "<h class = 'subnum' name = '"+ subcountno +"' style='font-size:12px; color:green;'>"+ subcountno +"</h>";
+												
+												
+												$(".subnum").replaceWith(str);
+												
+												
+												
 											
 											}, 
 											error : function(XHR, status, error) {
@@ -332,19 +353,21 @@
 							
 								<div style="text-align:right">
 									<c:if test = "${blist.subscription_count == 0}">
-										<h style="font-size:12px; color:green;">0 명이 구독 중 입니다.</h>
+										<h class = "subnum" name = "0" style="font-size:12px; color:green;">0</h>
+										<h style="font-size:12px; color:green;"> 명이 구독 중 입니다.</h>
 									</c:if>
 									<c:if test = "${blist.subscription_count != 0}">
-										<h style="font-size:12px; color:green;">${blist.subscription_count}명이 구독 중 입니다.</h>
+										<h class = "subnum" name = "${blist.subscription_count}" style="font-size:12px; color:green;">${blist.subscription_count}</h>
+										<h style="font-size:12px; color:green;">명이 구독 중 입니다.</h>
 									</c:if>
 								</div>
 							</h4>
 							<hr>
-	
+							
 								<!-- 갤러리 -->
 								<div class="container-fluid">
 									<div class="row">
-										<c:forEach items="${recipeList }" var="list">
+										<c:forEach items= "${recipeList}" var="list">
 											<c:if test ="${blist.recipebook_no  == list.recipebook_no }">
 												<div class="col-md-4">
 													<div class="single-blog-item">

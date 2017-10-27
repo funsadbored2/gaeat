@@ -120,7 +120,7 @@
 	<insert id = "addCategory" parameterType = "com.project.vo.RecipeBookListVo">
 		
 		<selectKey keyProperty="recipebookNo" resultType="int" order ="BEFORE">
-        		select seq_recipebook_num.nextval from dual
+        		select recipebook_seq.nextval from dual
     	</selectKey>
 		
 		<![CDATA[

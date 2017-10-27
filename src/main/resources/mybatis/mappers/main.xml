@@ -12,7 +12,7 @@
                                         where r.recipe_no = l.recipe_no
                                         and r.reg_date <= sysdate and r.reg_date >= add_months(sysdate, -3)
                                         order by like_count desc))
-            where rn < 6
+            where rn < 21
 		]]>
 	</select>
 	
@@ -42,8 +42,19 @@
 			select recipe_no
 				from(select DISTINCT recipe_no, reg_date
 				     from tag_history
-				     where tag_no = 14
-				     and rownum <= 20)
+				     where tag_no = 493
+				     and rownum <= 15)
+			order by reg_date desc	
+		]]>
+	</select>
+	
+	<select id = "getAloneRecipeNo" resultType = "com.project.vo.relatedRecipeVo">
+		<![CDATA[
+			select recipe_no
+				from(select DISTINCT recipe_no, reg_date
+				     from tag_history
+				     where tag_no = 234
+				     and rownum <= 15)
 			order by reg_date desc	
 		]]>
 	</select>

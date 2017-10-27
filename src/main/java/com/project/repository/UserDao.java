@@ -38,7 +38,7 @@ public class UserDao {
 				}
 			public int RecipeBookinsert(SocialUserVo vo1){
 				String a=vo1.getId();
-				int b= sqlSession.insert("RecipeBookinsert",  vo1);
+				int b= sqlSession.insert("login.RecipeBookinsert",  vo1);
 					return b;
 				}
 			
@@ -118,6 +118,7 @@ public class UserDao {
 						
 							return a;
 						}
+	
 	
 	//////////////////////////////////////////////////////////////////////////
 	//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//모바일//

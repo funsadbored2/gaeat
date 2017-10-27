@@ -28,10 +28,16 @@ public class MainController {
 		 
 		  List<relatedRecipeVo> veganList = mainService.getVeganRecipe();
 		  
+		  List<relatedRecipeVo> meatList = mainService.getMeatRecipe();
+		  
+		  List<relatedRecipeVo> aloneList = mainService.getAloneRecipe();
+		  
 		  System.out.println(topList);
 		  
+		  model.addAttribute("meatList", meatList);
 		  model.addAttribute("veganList", veganList);
 		  model.addAttribute("topList", topList);
+		  model.addAttribute("aloneList", aloneList);
 		  
 	      return "/main/index";
 	   

@@ -722,4 +722,58 @@ where rn<4
 		]]>
 
 	</select>
+	
+
+	<select id="getRecipeBookList" parameterType="Int"
+		resultType="com.project.vo.RecipeVo">
+		<![CDATA[
+			select DISTINCT rb.RECIPEBOOK_NAME as RECIPEBOOK_title, r.recipebook_no
+			from recipe r, recipebook rb
+			where r.recipebook_no = rb.recipebook_no and
+     			  r.chef_no = #{no}
+			order by r.RECIPEBOOK_no
+		]]>
+
+	</select>
+
+
+	<select id="getListByrbNo" parameterType="Int"
+		resultType="com.project.vo.RecipeVo">
+			<![CDATA[
+			select rb.RECIPEBOOK_NAME as RECIPEBOOK_title, r.recipe_no, r.introduction, r.food_img, r.recipe_title, r.chef_no,
+       			   c.nickname, r.food_name, r.reg_date, r.cooking_level, r.cooking_time,
+         		   r.recipebook_no, r.cooking_method, r.cooking_type,
+       			   r.food_img, r.amount, ( select count(*) from LIKE_HISTORY where
+      			   r.recipe_no=LIKE_HISTORY.recipe_no) as like_count
+			from recipe r, chef c, recipebook rb
+			where c.chef_no = r.chef_no and r.recipebook_no = rb.recipebook_no and
+      			  r.recipebook_no = #{no}
+			order by rb.RECIPEBOOK_no, r.recipe_no
+		]]>
+
+	</select>
+
+	<select id="getsubscriptionList" parameterType="Int"
+		resultType="com.project.vo.RecipeVo">
+		<![CDATA[
+			select DISTINCT sh.recipebook_no, rb.RECIPEBOOK_NAME as RECIPEBOOK_title
+			from recipebook rb, subscription_history sh
+			where sh.recipebook_no = rb.recipebook_no and 
+				  sh.chef_no = #{no}
+			order by sh.RECIPEBOOK_no
+		]]>
+	</select>
+	
+	
+	<select id="getFollowerList" parameterType="Int"
+		resultType="com.project.vo.SocialUserVo">
+		<![CDATA[
+		select fh.followed_id as chef_no, c.email as Id, c.nickname as nickname, 
+			   c.self_intro as userintro, c.profile as profile
+		from chef c, follow_history fh
+		where fh.followed_id=c.chef_no and fh.following_id = #{no}
+		order by c.nickname
+		]]>
+	</select>
+	
 </mapper>

@@ -76,5 +76,63 @@ public class MainDao {
 	
 }
 
+	public List<relatedRecipeVo> getMeatRecipe(){
+		
+    System.out.println("getMeatRecipe");
 	
+	List<relatedRecipeVo> list = sqlSession.selectList("mainpage.getMeatRecipeNo");
+	
+	List<relatedRecipeVo> meatList = new ArrayList<relatedRecipeVo>();
+	
+	for(int i = 0; i < list.size(); i++) {
+		
+		relatedRecipeVo meatVo = list.get(i);
+		
+		System.out.println(meatVo);
+		
+		int no = meatVo.getRecipe_no();
+		
+		meatVo = sqlSession.selectOne("mainpage.getRecipeList", no);
+		
+		System.out.println("나왔음!!!!!!!!1" + meatVo.toString());
+		
+		meatVo.setIdentity("meat");
+		
+		meatList.add(meatVo);
+		
+	}
+	
+	return meatList;
+	
+}
+	
+	public List<relatedRecipeVo> getAloneRecipe(){
+		
+	    System.out.println("getAloneRecipe");
+		
+		List<relatedRecipeVo> list = sqlSession.selectList("mainpage.getAloneRecipeNo");
+		
+		List<relatedRecipeVo> aloneList = new ArrayList<relatedRecipeVo>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			relatedRecipeVo aloneVo = list.get(i);
+			
+			System.out.println(aloneVo);
+			
+			int no = aloneVo.getRecipe_no();
+			
+			aloneVo = sqlSession.selectOne("mainpage.getRecipeList", no);
+			
+			System.out.println("나왔음!!!!!!!!1" + aloneVo.toString());
+			
+			aloneVo.setIdentity("alone");
+			
+			aloneList.add(aloneVo);
+			
+		}
+		
+		return aloneList;
+		
+	}
 }

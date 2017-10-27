@@ -716,7 +716,7 @@ pageEncoding="UTF-8"%>
                </a>
                
                
-               <a href="${pageContext.request.contextPath }/read/modify?recipe_no=${readformVo2.recipe_no}" class="btn btn-sm btn-default" style="color:white; background-color:#b6c98f; border-style:none; float:right; margin-right:20px;"><span class="glyphicon glyphicon-wrench"></span>  수정</a>
+              <%--  <a href="${pageContext.request.contextPath }/read/modify?recipe_no=${readformVo2.recipe_no}" class="btn btn-sm btn-default" style="color:white; background-color:#b6c98f; border-style:none; float:right; margin-right:20px;"><span class="glyphicon glyphicon-wrench"></span>  수정</a> --%>
                </c:if>
                </div>
                
@@ -851,7 +851,7 @@ pageEncoding="UTF-8"%>
 				data : {
 					user_comment : user_comment,
 					recipe_no : '${readformVo2.recipe_no}',
-					chef_no :'${chef.chef_no}'
+					chef_no :'${authUser.chef_no}'
 				},//앞의 name은 앞쪽에서의 name 뒤에서는 넘기고 싶은 값
 
 				dataType : "json",//json으로 받는다.

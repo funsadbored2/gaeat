@@ -870,19 +870,41 @@ $(document).ready(function(){
 			formData.append("cookingLevel", cookingLevel);
 			formData.append("recipebookName", recipebookName);  
 		
-			  $.ajax({
-        		 url: "${pageContext.request.contextPath}/enrollform/enrollInfo",
-                 processData: false,
-                 contentType: false,
-                 data: formData,
-                 type: "POST",
-                 success: function(recipeNo){
-                	 
-                	console.log("성공");
-                	orderSave(recipeNo);
-                	
-                 }
-         });
+			if(recipeTitle == ""){
+				alert("레시피 타이틀을 입력해 주세요.");
+			} else if(foodName == ""){
+				alert("요리 이름을 입력해주세요.");
+			} else if(introduction == ""){
+				alert("요리 소개을 입력해주세요.");
+			} else if(cookingType == ""){
+				alert("요리 종류를 선택해주세요.");
+			} else if(cookingMethod == ""){
+				alert("요리 방법을 선택해주세요.");
+			} else if(amount == ""){
+				alert("몇 명이 먹을 것인지 선택해주세요.");
+			} else if(cookingTime == ""){
+				alert("요리 시간을 선택해주세요.");
+			} else if(cookingLevel == ""){
+				alert("요리 난이도를 선택해주세요.");
+			} else if(recipebookName == ""){
+				alert("레시피북을 선택해주세요.");
+			} else if(data == null){
+				alert("요리의 메인 사진을 넣어주세요.");
+			} else{
+				$.ajax({
+	        		 url: "${pageContext.request.contextPath}/enrollform/enrollInfo",
+	                 processData: false,
+	                 contentType: false,
+	                 data: formData,
+	                 type: "POST",
+	                 success: function(recipeNo){
+	                	 
+	                	console.log("성공");
+	                	orderSave(recipeNo);
+	                	
+	                 }
+	         });
+			}
 			 
 		});
 	
@@ -912,6 +934,13 @@ $(document).ready(function(){
 				var contentName = "textContent_" + divNo;
 				
 				var textContent = $("." + contentName).val();
+				
+				/*  if(textContent == ""){
+					textContent == "입력 할 내용이 필요합니다.";
+				}
+				if(data = null){
+					 data = $("#main_photo")[0].files[0];
+				}  */
 				
 				var formData = new FormData();
 				
@@ -967,6 +996,14 @@ function ingreSave(recipeNo){
 			var material = $("input[name =" + materialName + "]").val();
 			var amount = $("input[name =" + amountName + "]").val();
 			
+			if(material == ""){
+				material = "재료 입력 안됨";
+			} 
+			
+			if(amount == ""){
+				amount = "적당히";
+			}
+			
 			ingreData.push(material);
 			amountData.push(amount);
 			
@@ -993,7 +1030,7 @@ function ingreSave(recipeNo){
 			}
 		});
 		
-	};
+	}
 	
 	//////////////////////////////////////////////////////////
 	
@@ -1019,6 +1056,10 @@ function ingreSave(recipeNo){
 					"tagData":tagData
 					
 			}
+			
+			if(tagData == ""){
+				savingImage(recipeNo);
+			} else{
 					$.ajax({
 						url: "${pageContext.request.contextPath}/enrollform/saveTag",
 						type : "post",
@@ -1026,15 +1067,16 @@ function ingreSave(recipeNo){
 						success : function() {
 							
 								console.log("tag성공");
-								 savingImage(recipeNo);
+								savingImage(recipeNo); 
 								
 						}, 
 						error : function(XHR, status, error) {
 							console.error(status + " : " + error);
 						}
 					});
-			
 			}
+			
+		}
 	
 	////////////////////////////////////////////////////////////
 	function savingImage(recipeNo){

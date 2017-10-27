@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.repository.SearchDao;
 import com.project.vo.RecipeVo;
+import com.project.vo.SocialUserVo;
 import com.project.vo.TagVo;
 import com.project.vo.keywordVo;
 
@@ -133,6 +134,22 @@ public class SearchService {
 	public List<RecipeVo> getTopRecipe() {
 		// TODO Auto-generated method stub
 		return searchdao.getTopRecipe();
+	}
+	
+	public List<RecipeVo> getRecipeBookList(int no) {
+		return searchdao.getRecipeBookList(no);
+	}
+	
+	public List<RecipeVo> getListByrbNo(int recipebook_no) {
+		return searchdao.getListByrbNo(recipebook_no);
+	}
+
+	public List<RecipeVo> getsubscriptionList(int no) {
+		return searchdao.getsubscriptionList(no);
+	}
+
+	public List<SocialUserVo> getFollowerList(int no) {
+		return searchdao.getFollowerList(no);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////

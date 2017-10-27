@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.RecipeVo;
+import com.project.vo.SocialUserVo;
 import com.project.vo.TagVo;
 import com.project.vo.keywordVo;
 
@@ -176,7 +177,26 @@ public class SearchDao {
 		return sqlSession.selectOne("search2.mobileSearchN", word);
 	}
 
-	
+
+
+	public List<RecipeVo> getRecipeBookList(int no) {
+		return sqlSession.selectList("search2.getRecipeBookList", no);
+	}
+
+	public List<RecipeVo> getListByrbNo(int no) {
+		return sqlSession.selectList("search2.getListByrbNo", no);
+	}
+
+	public List<RecipeVo> getsubscriptionList(int no) {
+		return sqlSession.selectList("search2.getsubscriptionList", no);
+	}
+
+	public List<SocialUserVo> getFollowerList(int no) {
+		return sqlSession.selectList("search2.getFollowerList", no);
+	}
+
+
+
 
 	
 

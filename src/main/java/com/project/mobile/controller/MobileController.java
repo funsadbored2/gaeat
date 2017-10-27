@@ -1,6 +1,7 @@
 package com.project.mobile.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,8 @@ import com.project.vo.ReadformVo;
 import com.project.vo.RecipeContent;
 import com.project.vo.RecipeVo;
 import com.project.vo.SocialUserVo;
-import com.project.vo.TagVo;;
+import com.project.vo.TagVo;
+import com.project.vo.recipebook;;
 
 @Controller
 public class MobileController {
@@ -36,8 +38,8 @@ public class MobileController {
 		// 레시피 정보 json 객체생성
 		JSONResultRecipeMainInfo result = new JSONResultRecipeMainInfo();
 		int rNo = Integer.parseInt(recipe_no);
-		System.out.println("받아온 레시피번호는 "+recipe_no); 
-		//int recipe_no = 1; // 설정한 사용자 번호
+		System.out.println("받아온 레시피번호는 " + recipe_no);
+		// int recipe_no = 1; // 설정한 사용자 번호
 
 		// 데이타 가져오기
 		ReadformVo r_main = rs.getRecipeInfo(rNo);
@@ -57,17 +59,17 @@ public class MobileController {
 		// 친구 리스트 json 객체생성
 		JSONResultRecipeContent result = new JSONResultRecipeContent();
 		int rNo = Integer.parseInt(recipe_no);
-		//int rNo = recipe_no.intValue();
-		//System.out.println("받아온 레시피번호는 "+recipe_no); 
+		// int rNo = recipe_no.intValue();
+		// System.out.println("받아온 레시피번호는 "+recipe_no);
 
-		//int recipe_no = 1; // 설정한 사용자 번호
+		// int recipe_no = 1; // 설정한 사용자 번호
 
 		// 데이타 가져오기
 		List<RecipeContent> r_content = rs.getRecipeContent(rNo);
 		System.out.println("이거 이대로 보냅니다\n" + r_content.toString());
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 		// 결과 객체에 값 세팅
 		result.setResult("succeess");
 		result.setData(r_content);
@@ -93,26 +95,25 @@ public class MobileController {
 		result.setData(f_list);
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 		return result;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/mobile_login")
 	public JSONResult<SocialUserVo> mobileLogin(String id, String pwd) {
-		System.out.println("ID : " + id+"\n"+
-							"pwd : " + pwd);
-		
+		System.out.println("ID : " + id + "\n" + "pwd : " + pwd);
+
 		// 친구 리스트 json 객체생성
 		JSONResultLoginInfo result = new JSONResultLoginInfo();
 		SocialUserVo user = new SocialUserVo();
-		
+
 		// 데이타 가져오기
 		user.setId(id.trim());
 		user.setPassword(pwd.trim());
 		user = us.mobilelogin(user);
-		
-		if(user.getId() ==null || user.getId() =="") {//일치하는 사용자가 아닐 경우
+
+		if (user.getId() == null || user.getId() == "") {// 일치하는 사용자가 아닐 경우
 			System.out.println("로그인에 실패했습니다.");
 			user.setChef_no(-1);
 		} else {
@@ -122,7 +123,7 @@ public class MobileController {
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
 		System.out.println("이거 이대로 보냅니다\n" + user.toString());
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 		// 결과 객체에 값 세팅
 		result.setResult("succeess");
 		result.setData(user);
@@ -133,7 +134,7 @@ public class MobileController {
 	@ResponseBody
 	@RequestMapping("/search_bytag")
 	public JSONResult<List<RecipeVo>> getSearchByTag(String word) {
-		//String word = "면요리";
+		// String word = "면요리";
 		// 친구 리스트 json 객체생성
 		JSONResultSearchByTag result = new JSONResultSearchByTag();
 		// 데이타 가져오기
@@ -149,7 +150,7 @@ public class MobileController {
 		result.setData(f_list);
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 		return result;
 	}
 
@@ -163,14 +164,13 @@ public class MobileController {
 		System.out.println("이거 이대로 보냅니다\n" + t_list.toString());
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 
 		// 결과 객체에 값 세팅
 		result.setResult("succeess");
 		result.setData(t_list);
 		return result;
 	}
-	
 
 	@ResponseBody
 	@RequestMapping(value = "/search_toprecipe", method = { RequestMethod.GET, RequestMethod.POST })
@@ -182,29 +182,126 @@ public class MobileController {
 		System.out.println("이거 이대로 보냅니다\n" + t_list.toString());
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
-		System.out.println("전송시각 : "+sdf.format(dt).toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
 
 		// 결과 객체에 값 세팅
 		result.setResult("succeess");
 		result.setData(t_list);
 		return result;
 	}
+
+	@ResponseBody
+	@RequestMapping("/search_recipebook")
+	public JSONResult<List<recipebook>> getRecipeList(String find_no) {
+		//String find_no = "5";
+		int no = Integer.parseInt(find_no);
+		// 친구 리스트 json 객체생성
+		JSONResultSearchRecipeBook result = new JSONResultSearchRecipeBook();
+		// 데이타 가져오기
+		System.out.println("찾을 사용자의 번호" + find_no);
+
+		List<RecipeVo> rbList = ss.getRecipeBookList(no);
+		System.out.println(rbList.toString());
+		// 결과 객체에 값 세팅
+		result.setResult("succeess");
+		List<recipebook> f_list = ConvertRvoToRbook(rbList);
+		result.setData(f_list);
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
+		System.out.println("search_recipebook : 이거 이대로 보냅니다\n" + f_list.toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
+		return result;
+	}
 	
+	@ResponseBody
+	@RequestMapping("/search_subscription")
+	public JSONResult<List<recipebook>> getsubscriptionList(String find_no) {
+		//String user_no = "5";
+		int no = Integer.parseInt(find_no);
+		// 친구 리스트 json 객체생성
+		JSONResultSearchSubscription result = new JSONResultSearchSubscription();
+		// 데이타 가져오기
+		System.out.println("찾을 사용자의 번호" + find_no);
+
+		List<RecipeVo> rbList = ss.getsubscriptionList(no); // 찾아야 하는 레시피북 번호들을 들고 온다.
+		// 결과 객체에 값 세팅
+		result.setResult("succeess");
+		List<recipebook> f_list = ConvertRvoToRbook(rbList);
+		result.setData(f_list);
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
+		System.out.println("search_subscription : 이거 이대로 보냅니다\n" + f_list.toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
+		return result;
+	}
+
 	
+
+	
+	@ResponseBody
+	@RequestMapping("/search_follower")
+	public JSONResult<List<SocialUserVo>> getfollowerList(String find_no) {
+		//String user_no = "5";
+		int no = Integer.parseInt(find_no);
+		// 친구 리스트 json 객체생성
+		JSONResultSearchFollowerList result = new JSONResultSearchFollowerList();
+		// 데이타 가져오기
+		System.out.println("찾을 사용자의 번호" + find_no);
+
+		List<SocialUserVo> follewerList = ss.getFollowerList(no); // 찾아야 하는 레시피북 번호들을 들고 온다.
+		// 결과 객체에 값 세팅
+		result.setResult("succeess");
+		result.setData(follewerList);
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, hh:mm:ss a");
+		System.out.println("search_follower : 이거 이대로 보냅니다\n" + follewerList.toString());
+		System.out.println("전송시각 : " + sdf.format(dt).toString());
+		return result;
+	}
 
 	// 추상클래스 상속(자료형만 지정)
 	private class JSONResultRecipeMainInfo extends JSONResult<ReadformVo> {
 	}
+
 	private class JSONResultRecipeContent extends JSONResult<List<RecipeContent>> {
 	}
+
 	private class JSONResultSearchresult extends JSONResult<List<RecipeVo>> {
 	}
+
 	private class JSONResultLoginInfo extends JSONResult<SocialUserVo> {
 	}
+
 	private class JSONResultTopTag extends JSONResult<List<TagVo>> {
 	}
+
 	private class JSONResultSearchByTag extends JSONResult<List<RecipeVo>> {
 	}
+
 	private class JSONResultTopRecipe extends JSONResult<List<RecipeVo>> {
+	}
+
+	private class JSONResultSearchRecipeBook extends JSONResult<List<recipebook>> {
+	}
+
+	private class JSONResultSearchSubscription extends JSONResult<List<recipebook>> {
+	}
+
+	private class JSONResultSearchFollowerList extends JSONResult<List<SocialUserVo>> {
+	}
+	
+	
+
+	public List<recipebook> ConvertRvoToRbook(List<RecipeVo> rbList) {
+		List<recipebook> recipebookList = new ArrayList<recipebook>();
+		for(int i = 0; i<rbList.size(); i++){
+			recipebook rb = new recipebook();
+			rb.setRecipebook_no(rbList.get(i).getRecipebook_no());
+			rb.setRecipebook_name(rbList.get(i).getRecipebook_title());
+			List<RecipeVo> rvoList = ss.getListByrbNo(rbList.get(i).getRecipebook_no());
+			rb.setRecipevoList(rvoList);
+			recipebookList.add(rb);
+		}
+		return recipebookList;
 	}
 }

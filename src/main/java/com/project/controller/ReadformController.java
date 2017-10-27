@@ -136,7 +136,7 @@ public class ReadformController {
 		readformService.deleteTag(no);
 		readformService.deleteRecipe(no);
 
-		return "main/index";
+		return "redirect:/main/index";
 	}
 
 	@RequestMapping(value = "/modify")

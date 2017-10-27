@@ -24,4 +24,16 @@ public class MainService {
 		return enrollDao.getVeganRecipe();
 				
 	}
+	
+	public List<relatedRecipeVo> getMeatRecipe(){
+		
+		return enrollDao.getMeatRecipe();
+		
+	}
+	
+	public List<relatedRecipeVo> getAloneRecipe(){
+		
+		return enrollDao.getAloneRecipe();
+		
+	}
 }

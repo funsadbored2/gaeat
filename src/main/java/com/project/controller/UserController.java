@@ -135,6 +135,8 @@ public class UserController {
 		
 		return"redirect:userprofile";
 	}
+
+
 	/*사이드 토글 dislike의  ajax 통신을 위한 컨트롤러 */
 	@ResponseBody
 	@RequestMapping(value = "seldislist", method = RequestMethod.POST)
@@ -198,6 +200,7 @@ public class UserController {
 		return "user/loginmain";
 	}
 	
+	
 	/*로그인 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@ModelAttribute SocialUserVo joinvo, HttpSession session) {
@@ -211,7 +214,7 @@ public class UserController {
 			String hatefood= uService.getdislike(authUser.getChef_no());
 			if (hatefood==null) {
 				System.out.println("hatefood == null");
-				return "main/index";
+				return "redirect:/main/index";
 			}else {
 				//프로필에 들어갈때, authUser에 있는 chef no 로 dislike 가 있나없나 파악한다. 
 				authUser.setHatefood(hatefood);
@@ -224,7 +227,7 @@ public class UserController {
 			
 			System.out.println("세션 안의 값"+authUser);
 		}
-		return"main/index";
+		return "redirect:/main/index";
 		
 	}
 	
